@@ -10,11 +10,13 @@ import Foundation
 import MediaPlayer
 
 class NowPlaying {
-	let title: String?
+	var trackTitle: String?
+	var albumTitle: String?
+	var albumArtist: String?
 	
-	public init(title:String) {
-		self.title = title
-		
+	public init(trackTitle: String, albumTitle: String, albumArtist: String) {
+		self.trackTitle = trackTitle
+		self.albumTitle = albumTitle
 		
 	}
 	
