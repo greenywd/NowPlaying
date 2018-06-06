@@ -7,6 +7,8 @@ After unsubscribing from Apple Music, there wasn't a quick way to share what I'm
 [See Issues.](https://github.com/greenywd/NowPlaying/issues)
 
 ### To-Do
+- [ ] Backport to iOS 11 as iOS 12 changed a few things
+- [ ] Create macOS app (Marzipan???)
 - [ ] Make the app look prettier.
 - [ ] Add settings pane - customise the string, include artwork, etc.
 - [ ] Resize image when sharing - 1280x1280 artwork is probably a little excessive and is quite large when sharing in Messages.
