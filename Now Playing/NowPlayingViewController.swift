@@ -21,7 +21,7 @@ class NowPlayingViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
-		
+		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 		
 		updateNowPlaying()
@@ -31,8 +31,7 @@ class NowPlayingViewController: UIViewController {
 		
 	}
 	
-	@objc
-	func updateNowPlaying() {
+	@objc func updateNowPlaying() {
 		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
 		
 		if let artist = systemMusicPlayer?.artist {
