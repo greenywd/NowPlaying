@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
-		D6FE38A020C629D7009BB662 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* ViewController.swift */; };
+		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
 		D6FE38A520C629D9009BB662 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A420C629D9009BB662 /* Assets.xcassets */; };
 		D6FE38A820C629D9009BB662 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */; };
-		D6FE38B120C62BA9009BB662 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE38B020C62BA9009BB662 /* NowPlaying.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D62F638F20C7E70800A44662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE389D20C629D7009BB662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D6FE389F20C629D7009BB662 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		D6FE38A220C629D7009BB662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6FE38A420C629D9009BB662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FE38A720C629D9009BB662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6FE38A920C629D9009BB662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6FE38AF20C62A0A009BB662 /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		D6FE38B020C62BA9009BB662 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +58,8 @@
 			isa = PBXGroup;
 			children = (
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
-				D6FE389F20C629D7009BB662 /* ViewController.swift */,
-				D6FE38B020C62BA9009BB662 /* NowPlaying.swift */,
+				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
+				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
 				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
 				D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */,
@@ -140,9 +140,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6FE38A020C629D7009BB662 /* ViewController.swift in Sources */,
+				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
+				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
-				D6FE38B120C62BA9009BB662 /* NowPlaying.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

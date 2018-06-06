@@ -9,9 +9,10 @@
 import UIKit
 import MediaPlayer
 
-class ViewController: UIViewController {
+class NowPlayingViewController: UIViewController {
 	var currentInfo: MPMediaItem?
 	var artworkImage: UIImage?
+	
 	@IBOutlet var artworkView: UIImageView!
 	@IBOutlet var artistLabel: UILabel!
 	@IBOutlet var titleLabel: UILabel!
@@ -21,14 +22,34 @@ class ViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		artworkImage = UIImage(named: "ye.jpg")
-		artworkView.isUserInteractionEnabled = true
+		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .appDidBecomeActive, object: nil)
 		
-		if let image = artworkImage {
-			artworkView.image = image
-			artworkView.contentMode = .scaleAspectFit
-		} else {
-			print(artworkImage!)
+		updateNowPlaying()
+		
+		artworkView.isUserInteractionEnabled = true
+		artworkView.contentMode = .scaleAspectFit
+		
+	}
+	
+	@objc
+	func updateNowPlaying() {
+		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+		
+		if let artist = systemMusicPlayer?.artist {
+			artistLabel.text = artist
+		}
+		
+		if let album = systemMusicPlayer?.albumTitle {
+			//nowPlaying["Album"] = album
+		}
+		
+		if let title = systemMusicPlayer?.title {
+			titleLabel.text = title
+		}
+		
+		if let artwork = systemMusicPlayer?.artwork {
+			artworkImage = artwork.image(at: artwork.bounds.size)
+			artworkView.image = artworkImage
 		}
 		
 	}
@@ -48,12 +69,12 @@ class ViewController: UIViewController {
 		}
 		
 		// set up activity view controller
-		let textToShare = [ text ]
+		let textToShare = [text]
 		let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
 		activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
 		
 		// exclude some activity types from the list (optional)
-		activityViewController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop ]
+		activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
 		
 		// present the view controller
 		self.present(activityViewController, animated: true, completion: nil)
