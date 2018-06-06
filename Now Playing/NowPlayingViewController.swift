@@ -76,7 +76,7 @@ class NowPlayingViewController: UIViewController {
 
 		let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
 		activityViewController.popoverPresentationController?.sourceView = self.view
-		activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
+		activityViewController.excludedActivityTypes = [UIActivityType.airDrop]
 		
 		self.present(activityViewController, animated: true, completion: nil)
 	}
