@@ -22,7 +22,7 @@ class NowPlayingViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .appDidBecomeActive, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 		
 		updateNowPlaying()
 		
