@@ -55,9 +55,7 @@ class NowPlayingViewController: UIViewController {
 	}
 	
 	@IBAction func imageTapped(_ sender: Any) {
-		print("Image tapped!")
-		
-		// text to share
+		var toShare = [Any]()
 		var text = "#NowPlaying - "
 		
 		if let title = titleLabel.text {
@@ -68,15 +66,18 @@ class NowPlayingViewController: UIViewController {
 			text += artist
 		}
 		
-		// set up activity view controller
-		let textToShare = [text]
-		let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-		activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+		toShare.append(text)
 		
-		// exclude some activity types from the list (optional)
+		if let image = artworkImage {
+			toShare.append(image)
+		}
+		
+		// https://stackoverflow.com/a/35931947
+
+		let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
+		activityViewController.popoverPresentationController?.sourceView = self.view
 		activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop]
 		
-		// present the view controller
 		self.present(activityViewController, animated: true, completion: nil)
 	}
 	
