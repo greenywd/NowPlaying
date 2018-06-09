@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D62F639220C7F39800A44662 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D62F639120C7F39800A44662 /* README.md */; };
+		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
+		D6323E6C20CBE868007728F9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6323E6B20CBE868007728F9 /* Settings.bundle */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		D62F638F20C7E70800A44662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D62F639120C7F39800A44662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		D6323E6B20CBE868007728F9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE389D20C629D7009BB662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
@@ -62,6 +66,8 @@
 			children = (
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
+				D6323E6B20CBE868007728F9 /* Settings.bundle */,
+				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
 				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
@@ -133,6 +139,7 @@
 			files = (
 				D6FE38A820C629D9009BB662 /* LaunchScreen.storyboard in Resources */,
 				D6FE38A520C629D9009BB662 /* Assets.xcassets in Resources */,
+				D6323E6C20CBE868007728F9 /* Settings.bundle in Resources */,
 				D62F639220C7F39800A44662 /* README.md in Resources */,
 				D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */,
 			);
@@ -148,6 +155,7 @@
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
+				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

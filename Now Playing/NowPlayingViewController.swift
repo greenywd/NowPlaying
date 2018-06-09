@@ -61,24 +61,31 @@ class NowPlayingViewController: UIViewController {
 		var text = "Now Playing - "
 		
 		if let title = titleLabel.text {
+			print("Adding text...")
 			text += title + " by "
 		}
 		
 		if let artist = artistLabel.text {
+			print("Adding text...")
 			text += artist
 		}
 		
 		toShare.append(text)
 		
-		if let image = artworkImage {
-			toShare.append(image)
+		if UserDefaults.standard.bool(forKey: "artwork_enabled") {
+			if let image = artworkImage {
+				print("Adding artwork...")
+				toShare.append(image)
+				// do we need to resize images?
+				// toShare.append(image.resizeImage(image: image, newWidth: 600))
+			}
 		}
 		
 		// https://stackoverflow.com/a/35931947
 
 		let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
 		activityViewController.popoverPresentationController?.sourceView = self.artworkView
-		activityViewController.excludedActivityTypes = [UIActivityType.airDrop]
+		activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.saveToCameraRoll]
 		
 		self.present(activityViewController, animated: true, completion: nil)
 	}
