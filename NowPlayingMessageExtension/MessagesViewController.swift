@@ -8,16 +8,78 @@
 
 import UIKit
 import Messages
+import MediaPlayer
 
 class MessagesViewController: MSMessagesAppViewController {
-    
-    override func viewDidLoad() {
+	
+	var artistStr: String?
+	var titleStr: String?
+	var albumStr: String?
+	var artworkImg: UIImage?
+	
+	@IBOutlet var shareButton: UIButton!
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
 		
-		
     }
-    
+	
+	func updateNowPlaying() {
+		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+		
+		if let artist = systemMusicPlayer?.artist {
+			artistStr = artist
+		}
+		
+		if let album = systemMusicPlayer?.albumTitle {
+			albumStr = album
+		}
+		
+		if let title = systemMusicPlayer?.title {
+			titleStr = title
+		}
+		
+		if let artwork = systemMusicPlayer?.artwork {
+			artworkImg = artwork.image(at: artwork.bounds.size)
+		} else {
+			// do something when there's no artwork - currently the artwork doesn't update
+		}
+		
+	}
+	
+	@IBAction func shareButtonPressed(_ sender: Any) {
+		updateNowPlaying()
+		composeMessage()
+	}
+	
+	private func composeMessage() {
+		let conversation = activeConversation
+		let session = conversation?.selectedMessage?.session ?? MSSession()
+		
+		let layout = MSMessageTemplateLayout()
+		
+		if let artwork = artworkImg {
+			layout.image = artwork
+		}
+		
+		layout.imageTitle = "Now Playing!"
+		
+		if let title = titleStr {
+			layout.caption = title
+		}
+
+		if let artist = artistStr {
+			layout.subcaption = artist
+		}
+		
+		let message = MSMessage(session: session)
+		message.layout = layout
+		message.summaryText = "Sent Hello World message"
+		
+		conversation?.insert(message)
+	}
+	
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
