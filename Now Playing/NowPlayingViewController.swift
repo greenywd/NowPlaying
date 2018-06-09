@@ -12,6 +12,7 @@ import MediaPlayer
 class NowPlayingViewController: UIViewController {
 	var artworkImage: UIImage?
 	
+	@IBOutlet var nowPlayingLabel: UILabel!
 	@IBOutlet var artworkView: UIImageView!
 	@IBOutlet var artistLabel: UILabel!
 	@IBOutlet var titleLabel: UILabel!
@@ -23,7 +24,7 @@ class NowPlayingViewController: UIViewController {
 		
 		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
-		
+		NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 		updateNowPlaying()
 		
 		artworkView.isUserInteractionEnabled = true
@@ -88,6 +89,20 @@ class NowPlayingViewController: UIViewController {
 		activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.saveToCameraRoll]
 		
 		self.present(activityViewController, animated: true, completion: nil)
+	}
+	// https://gist.github.com/abhimuralidharan/3bcd28041f0bd81053c2f92f384ca693#file-settingsobserver-swift
+	@objc func defaultsChanged() {
+		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
+			self.view.backgroundColor = .init(red: 41/255, green: 42/255, blue: 48/255, alpha: 1)
+			nowPlayingLabel.textColor = .lightText
+			artistLabel.textColor = .lightText
+			titleLabel.textColor = .lightText
+		} else {
+			self.view.backgroundColor = .white
+			nowPlayingLabel.textColor = .darkText
+			artistLabel.textColor = .darkText
+			titleLabel.textColor = .darkText
+		}
 	}
 	
 	override var preferredStatusBarStyle: UIStatusBarStyle {
