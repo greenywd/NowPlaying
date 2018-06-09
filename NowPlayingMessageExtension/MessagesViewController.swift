@@ -75,7 +75,7 @@ class MessagesViewController: MSMessagesAppViewController {
 		
 		let message = MSMessage(session: session)
 		message.layout = layout
-		message.summaryText = "Sent Hello World message"
+		message.summaryText = "Shared Now Playing"
 		
 		conversation?.insert(message)
 	}
