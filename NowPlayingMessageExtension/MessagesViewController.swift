@@ -22,7 +22,7 @@ class MessagesViewController: MSMessagesAppViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		
+		shareButton.titleLabel?.text = "Share Song"
     }
 	
 	func updateNowPlaying() {
@@ -30,10 +30,6 @@ class MessagesViewController: MSMessagesAppViewController {
 		
 		if let artist = systemMusicPlayer?.artist {
 			artistStr = artist
-		}
-		
-		if let album = systemMusicPlayer?.albumTitle {
-			albumStr = album
 		}
 		
 		if let title = systemMusicPlayer?.title {
