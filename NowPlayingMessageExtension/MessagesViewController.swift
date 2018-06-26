@@ -17,39 +17,66 @@ class MessagesViewController: MSMessagesAppViewController {
 	var albumStr: String?
 	var artworkImg: UIImage?
 	
-	@IBOutlet var shareButton: UIButton!
+	@IBOutlet var shareSong: UIButton!
+	@IBOutlet var shareAlbum: UIButton!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		shareButton.titleLabel?.text = "Share Song"
+		shareSong.titleLabel?.text = "Share Song"
     }
 	
-	func updateNowPlaying() {
+	func updateNowPlaying(isSharingAlbum: Bool) {
 		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-		
-		if let artist = systemMusicPlayer?.artist {
-			artistStr = artist
-		}
-		
-		if let title = systemMusicPlayer?.title {
-			titleStr = title
-		}
-		
-		if let artwork = systemMusicPlayer?.artwork {
-			artworkImg = artwork.image(at: artwork.bounds.size)
+		print(isSharingAlbum)
+		if (isSharingAlbum) {
+			
+			if let artist = systemMusicPlayer?.artist {
+				artistStr = artist
+			}
+			
+			if let album = systemMusicPlayer?.albumTitle {
+				titleStr = album
+			}
+			
+			if let artwork = systemMusicPlayer?.artwork {
+				artworkImg = artwork.image(at: artwork.bounds.size)
+			
+			} else {
+				// do something when there's no artwork - currently the artwork doesn't update
+			}
+			
 		} else {
-			// do something when there's no artwork - currently the artwork doesn't update
+			
+			if let artist = systemMusicPlayer?.artist {
+				artistStr = artist
+			}
+			
+			if let title = systemMusicPlayer?.title {
+				titleStr = title
+			}
+			
+			if let artwork = systemMusicPlayer?.artwork {
+				artworkImg = artwork.image(at: artwork.bounds.size)
+			} else {
+				// do something when there's no artwork - currently the artwork doesn't update
+			}
+			
 		}
 		
 	}
 	
+	@IBAction func shareAlbumPressed(_ sender: Any) {
+		updateNowPlaying(isSharingAlbum: true)
+		composeMessage(isSharingAlbum: true)
+	
+	}
 	@IBAction func shareButtonPressed(_ sender: Any) {
-		updateNowPlaying()
-		composeMessage()
+		updateNowPlaying(isSharingAlbum: false)
+		composeMessage(isSharingAlbum: false)
 	}
 	
-	private func composeMessage() {
+	private func composeMessage(isSharingAlbum: Bool) {
 		let conversation = activeConversation
 		let session = conversation?.selectedMessage?.session ?? MSSession()
 		
@@ -58,8 +85,12 @@ class MessagesViewController: MSMessagesAppViewController {
 		if let artwork = artworkImg {
 			layout.image = artwork
 		}
-		
-		layout.imageTitle = "Now Playing!"
+		if (isSharingAlbum) {
+			layout.imageTitle = "Now Playing Album:"
+			
+		} else {
+			layout.imageTitle = "Now Playing Song:"
+		}
 		
 		if let title = titleStr {
 			layout.caption = title

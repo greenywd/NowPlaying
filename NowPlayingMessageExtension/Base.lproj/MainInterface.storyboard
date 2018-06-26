@@ -17,41 +17,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="528"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello World" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1e-fi-ked">
-                                <rect key="frame" x="115.5" y="254" width="89" height="20"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ce9-Ey-tIA">
-                                <rect key="frame" x="137" y="216" width="46" height="30"/>
+                                <rect key="frame" x="16" y="115" width="80" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="EWH-QL-lNM"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                                <state key="normal" title="Share Song"/>
                                 <connections>
                                     <action selector="shareButtonPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="bak-SP-ev1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IcC-jG-oEb">
+                                <rect key="frame" x="212" y="115" width="92" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="hAU-j2-b2y"/>
+                                </constraints>
+                                <state key="normal" title="Share Album"/>
+                                <connections>
+                                    <action selector="shareAlbumPressed:" destination="ObA-dk-sSI" eventType="touchUpInside" id="taL-IW-BAl"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="d1e-fi-ked" firstAttribute="top" secondItem="ce9-Ey-tIA" secondAttribute="bottom" constant="8" symbolic="YES" id="2Pg-OQ-B3g"/>
-                            <constraint firstAttribute="centerY" secondItem="d1e-fi-ked" secondAttribute="centerY" id="H0s-hz-dDP"/>
-                            <constraint firstItem="ce9-Ey-tIA" firstAttribute="top" secondItem="LDy-ih-0nr" secondAttribute="top" constant="196" id="OJ0-aa-8h3"/>
-                            <constraint firstItem="ce9-Ey-tIA" firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="ZT5-2X-SK4"/>
-                            <constraint firstAttribute="centerX" secondItem="d1e-fi-ked" secondAttribute="centerX" id="wFy-hW-Bib"/>
+                            <constraint firstItem="IcC-jG-oEb" firstAttribute="leading" secondItem="LDy-ih-0nr" secondAttribute="leading" constant="212" id="0rc-se-fYm"/>
+                            <constraint firstItem="ce9-Ey-tIA" firstAttribute="baseline" secondItem="IcC-jG-oEb" secondAttribute="baseline" id="9DB-qc-KAt"/>
+                            <constraint firstItem="LDy-ih-0nr" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ce9-Ey-tIA" secondAttribute="trailing" symbolic="YES" id="MdD-yf-B98"/>
+                            <constraint firstItem="ce9-Ey-tIA" firstAttribute="top" secondItem="LDy-ih-0nr" secondAttribute="top" constant="95" id="OJ0-aa-8h3"/>
+                            <constraint firstItem="ce9-Ey-tIA" firstAttribute="leading" secondItem="zMn-AG-sqS" secondAttribute="leadingMargin" id="Xaf-jW-iUa"/>
+                            <constraint firstItem="IcC-jG-oEb" firstAttribute="trailing" secondItem="zMn-AG-sqS" secondAttribute="trailingMargin" id="lPr-oP-vpu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LDy-ih-0nr"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="528"/>
                     <connections>
-                        <outlet property="shareButton" destination="ce9-Ey-tIA" id="z1b-bP-6Zl"/>
+                        <outlet property="shareAlbum" destination="IcC-jG-oEb" id="Is6-dh-QYe"/>
+                        <outlet property="shareSong" destination="ce9-Ey-tIA" id="z1b-bP-6Zl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="X47-rx-isc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.59999999999999" y="133.13343328335833"/>
         </scene>
     </scenes>
 </document>
