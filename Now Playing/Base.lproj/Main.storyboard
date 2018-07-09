@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14252.5"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OlR-dC-BVW">
-                                <rect key="frame" x="37" y="127" width="300" height="300"/>
+                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OlR-dC-BVW">
+                                <rect key="frame" x="37" y="127" width="301" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="FNf-xa-xMn"/>
@@ -28,14 +28,17 @@
                                     <outletCollection property="gestureRecognizers" destination="1ep-AC-ITC" appends="YES" id="cSj-cx-X4S"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
-                                <rect key="frame" x="139" y="442" width="97" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
+                                <rect key="frame" x="139" y="442" width="97" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66254204511642456" green="0.66657811403274536" blue="0.67479318380355835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="faS-T2-iCd" appends="YES" id="cqj-uh-vbV"/>
+                                </connections>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Self Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
-                                <rect key="frame" x="16" y="471" width="343" height="21"/>
+                                <rect key="frame" x="16" y="470.5" width="343" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -66,7 +69,7 @@
                         <outlet property="artistLabel" destination="y9N-hR-Fec" id="gMB-wg-Yiz"/>
                         <outlet property="artworkView" destination="OlR-dC-BVW" id="MvB-WK-gDn"/>
                         <outlet property="nowPlayingLabel" destination="DxB-wy-UUr" id="2ds-aC-IsB"/>
-                        <outlet property="singleTapGestureRecognizer" destination="1ep-AC-ITC" id="RxO-RX-gUb"/>
+                        <outlet property="requestAccessTapGestureRecognizer" destination="faS-T2-iCd" id="hBN-vv-0wb"/>
                         <outlet property="titleLabel" destination="DYt-vi-SRs" id="775-fg-T6T"/>
                     </connections>
                 </viewController>
@@ -74,6 +77,11 @@
                 <tapGestureRecognizer id="1ep-AC-ITC">
                     <connections>
                         <action selector="imageTapped:" destination="BYZ-38-t0r" id="0i4-QJ-ACI"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="faS-T2-iCd">
+                    <connections>
+                        <action selector="requestAccess:" destination="BYZ-38-t0r" id="0l5-9V-WxL"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

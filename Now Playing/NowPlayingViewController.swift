@@ -16,20 +16,37 @@ class NowPlayingViewController: UIViewController {
 	@IBOutlet var artworkView: UIImageView!
 	@IBOutlet var artistLabel: UILabel!
 	@IBOutlet var titleLabel: UILabel!
-	@IBOutlet var singleTapGestureRecognizer: UITapGestureRecognizer!
+	
+	@IBOutlet var requestAccessTapGestureRecognizer: UITapGestureRecognizer!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
-		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
-		NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-		updateNowPlaying()
-		
-		artworkView.isUserInteractionEnabled = true
-		artworkView.contentMode = .scaleAspectFit
-		
+		// if medialibrary isn't authorized, change a label text to prompt for access
+		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
+			nowPlayingLabel.isHidden = true
+			artworkView.isHidden = true
+			artistLabel.text = "Tap here to authorize NowPlaying to access your music library!"
+			titleLabel.isHidden = true
+			
+		} else {
+			
+			// assume everything else is hidden, and once authorized, show.
+			if (nowPlayingLabel.isHidden == true) {
+				nowPlayingLabel.isHidden = false
+				artworkView.isHidden = false
+				titleLabel.isHidden = false
+			}
+			
+			MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
+			NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+			updateNowPlaying()
+			
+			artworkView.isUserInteractionEnabled = true
+			artworkView.contentMode = .scaleAspectFit
+		}
 	}
 	
 	@objc func updateNowPlaying() {
@@ -37,15 +54,21 @@ class NowPlayingViewController: UIViewController {
 		
 		if let artist = systemMusicPlayer?.artist {
 			artistLabel.text = artist
+		} else {
+			artistLabel.text = "Unknown Artist"
 		}
 		
 		if let album = systemMusicPlayer?.albumTitle {
 			//nowPlaying["Album"] = album
 			print(album)
+		} else {
+			
 		}
 		
 		if let title = systemMusicPlayer?.title {
 			titleLabel.text = title
+		} else {
+			titleLabel.text = "Unknown Track"
 		}
 		
 		if let artwork = systemMusicPlayer?.artwork {
@@ -55,6 +78,9 @@ class NowPlayingViewController: UIViewController {
 			// do something when there's no artwork - currently the artwork doesn't update
 		}
 		
+	}
+	@IBAction func requestAccess(_ sender: Any) {
+		MPMediaLibrary.requestAuthorization {(status) in }
 	}
 	
 	@IBAction func imageTapped(_ sender: Any) {
