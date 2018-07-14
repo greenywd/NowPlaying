@@ -14,6 +14,7 @@ After unsubscribing from Apple Music, there wasn't a quick way to share what I'm
 - [ ] Resize image when sharing - 1280x1280 artwork is probably a little excessive and is quite large when sharing in Messages.
 - [ ] Add a widget/message extension for ease of access
 - [ ] Test when a song doesn't have proper tagging (i.e missing tag will probably show as 'nil' or not be added at all instead of 'Unknown Artist' or similar).
+- [ ] Add a background blur which changes with artwork
 
 ### Screenshot
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4732.png" width="375" height="812">
