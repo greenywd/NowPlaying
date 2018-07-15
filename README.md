@@ -16,6 +16,9 @@ After unsubscribing from Apple Music, there wasn't a quick way to share what I'm
 - [ ] Test when a song doesn't have proper tagging (i.e missing tag will probably show as 'nil' or not be added at all instead of 'Unknown Artist' or similar).
 - [ ] Add a background blur which changes with artwork
 
-### Screenshot
+### Screenshots
+#### App
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4732.png" width="375" height="812">
+
+#### iMessage Extension
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4962.jpeg">
