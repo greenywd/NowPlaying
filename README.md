@@ -18,4 +18,4 @@ After unsubscribing from Apple Music, there wasn't a quick way to share what I'm
 
 ### Screenshot
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4732.png" width="375" height="812">
-<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4733.jpeg">
+<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4962.jpeg">
