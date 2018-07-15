@@ -3,9 +3,6 @@ Small app to share what you're currently listening to (Music app only!)
 
 After unsubscribing from Apple Music, there wasn't a quick way to share what I'm currently listening to with friends. With Apple Music you can share the iTunes link which is formatted nicely within the Messages app. Missing that feature quite a lot, I whipped up the majority of this app within a few hours just to restore this functionality. Tap on the artwork to share.
 
-### Known Bugs
-[See Issues.](https://github.com/greenywd/NowPlaying/issues)
-
 ### To-Do
 - [ ] Backport to iOS 11 as iOS 12 changed a few things
 - [ ] Create macOS app (Marzipan???)
