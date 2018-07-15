@@ -21,4 +21,4 @@ After unsubscribing from Apple Music, there wasn't a quick way to share what I'm
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4732.png" width="375" height="812">
 
 #### iMessage Extension
-<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4962.jpeg">
+<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4962.jpeg" width="350" height="451">
