@@ -28,20 +28,14 @@
                                     <outletCollection property="gestureRecognizers" destination="1ep-AC-ITC" appends="YES" id="cSj-cx-X4S"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
-                                <rect key="frame" x="139" y="442" width="97" height="20.5"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
+                                <rect key="frame" x="139" y="464" width="97" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.66254204511642456" green="0.66657811403274536" blue="0.67479318380355835" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="faS-T2-iCd" appends="YES" id="cqj-uh-vbV"/>
                                 </connections>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Self Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
-                                <rect key="frame" x="16" y="470.5" width="343" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
-                                <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now Playing:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DxB-wy-UUr">
                                 <rect key="frame" x="139.5" y="72" width="99" height="21"/>
@@ -49,18 +43,24 @@
                                 <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Self Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
+                                <rect key="frame" x="37" y="493" width="301" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.66274509800000003" green="0.66666666669999997" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431372549018" green="0.16470588235294117" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="OlR-dC-BVW" firstAttribute="centerX" secondItem="y9N-hR-Fec" secondAttribute="centerX" id="4qi-zq-Ipe"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="top" secondItem="y9N-hR-Fec" secondAttribute="bottom" constant="8" symbolic="YES" id="0zU-ii-8fu"/>
                             <constraint firstItem="DxB-wy-UUr" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="52" id="EJC-p8-di7"/>
                             <constraint firstItem="OlR-dC-BVW" firstAttribute="centerX" secondItem="DxB-wy-UUr" secondAttribute="centerX" constant="-1.5" id="NCU-tB-cQG"/>
-                            <constraint firstItem="DYt-vi-SRs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Szq-5b-Sdl"/>
-                            <constraint firstItem="DYt-vi-SRs" firstAttribute="top" secondItem="y9N-hR-Fec" secondAttribute="bottom" constant="8" symbolic="YES" id="WfG-ex-nvZ"/>
-                            <constraint firstItem="y9N-hR-Fec" firstAttribute="top" secondItem="OlR-dC-BVW" secondAttribute="bottom" constant="15" id="c0j-Zp-Dsp"/>
+                            <constraint firstItem="y9N-hR-Fec" firstAttribute="top" secondItem="OlR-dC-BVW" secondAttribute="bottom" constant="37" id="Nko-Nk-BhZ"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="VCa-Pi-Nty"/>
+                            <constraint firstItem="y9N-hR-Fec" firstAttribute="centerX" secondItem="OlR-dC-BVW" secondAttribute="centerX" id="XL9-T1-u0m"/>
                             <constraint firstItem="OlR-dC-BVW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="jrl-cQ-9Q9"/>
                             <constraint firstItem="OlR-dC-BVW" firstAttribute="top" secondItem="DxB-wy-UUr" secondAttribute="bottom" constant="34" id="muc-Wo-jMX"/>
-                            <constraint firstItem="DYt-vi-SRs" firstAttribute="centerX" secondItem="y9N-hR-Fec" secondAttribute="centerX" id="rnO-UJ-bxj"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rh3-os-jp3"/>
                             <constraint firstItem="OlR-dC-BVW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yC1-D7-38c"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

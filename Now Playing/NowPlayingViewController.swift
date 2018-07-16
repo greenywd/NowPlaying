@@ -11,6 +11,8 @@ import MediaPlayer
 
 class NowPlayingViewController: UIViewController {
 	var artworkImage: UIImage?
+	var backgroundArtworkImage: UIImage?
+	var blurEffectView: UIVisualEffectView?
 	
 	@IBOutlet var nowPlayingLabel: UILabel!
 	@IBOutlet var artworkView: UIImageView!
@@ -23,6 +25,7 @@ class NowPlayingViewController: UIViewController {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
 		
+		// TODO: Authorization: Make sure this is implemented and working
 		// if medialibrary isn't authorized, change a label text to prompt for access
 		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
 			nowPlayingLabel.isHidden = true
@@ -46,7 +49,27 @@ class NowPlayingViewController: UIViewController {
 			
 			artworkView.isUserInteractionEnabled = true
 			artworkView.contentMode = .scaleAspectFit
+			
+			blurEffectView = UIVisualEffectView()
+			blurEffectView?.tag = 1
+			
 		}
+	}
+	
+	func updateBlurEffectView(style: UIBlurEffectStyle) {
+		
+		if let viewWithTag = self.view.viewWithTag(1) {
+			viewWithTag.removeFromSuperview()
+		} else {
+			print("No need to remove blur view.")
+		}
+		
+		let blurEffect = UIBlurEffect(style: style)
+		blurEffectView?.effect = blurEffect
+		blurEffectView?.frame = view.bounds
+		blurEffectView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		
+		self.view.insertSubview(blurEffectView!, at: 0)
 	}
 	
 	@objc func updateNowPlaying() {
@@ -74,6 +97,10 @@ class NowPlayingViewController: UIViewController {
 		if let artwork = systemMusicPlayer?.artwork {
 			artworkImage = artwork.image(at: artwork.bounds.size)
 			artworkView.image = artworkImage
+			
+			backgroundArtworkImage = artworkImage!
+			self.view.backgroundColor = UIColor(patternImage: artworkImage!)
+			
 		} else {
 			// do something when there's no artwork - currently the artwork doesn't update
 		}
@@ -119,12 +146,12 @@ class NowPlayingViewController: UIViewController {
 	// https://gist.github.com/abhimuralidharan/3bcd28041f0bd81053c2f92f384ca693#file-settingsobserver-swift
 	@objc func defaultsChanged() {
 		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-			self.view.backgroundColor = .init(red: 41/255, green: 42/255, blue: 48/255, alpha: 1)
+			updateBlurEffectView(style: .dark)
 			nowPlayingLabel.textColor = .lightText
 			artistLabel.textColor = .lightText
 			titleLabel.textColor = .lightText
 		} else {
-			self.view.backgroundColor = .white
+			updateBlurEffectView(style: .light)
 			nowPlayingLabel.textColor = .darkText
 			artistLabel.textColor = .darkText
 			titleLabel.textColor = .darkText
