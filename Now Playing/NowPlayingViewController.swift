@@ -10,6 +10,7 @@ import UIKit
 import MediaPlayer
 
 class NowPlayingViewController: UIViewController {
+	
 	var artworkImage: UIImage?
 	var backgroundArtworkImage: UIImage?
 	var blurEffectView: UIVisualEffectView?
@@ -101,13 +102,17 @@ class NowPlayingViewController: UIViewController {
 			artworkView.image = artworkImage
 			
 			backgroundArtworkImage = artworkImage!
+			
+			// FIXME: Use something other than pattern image
 			self.view.backgroundColor = UIColor(patternImage: artworkImage!)
 			
 		} else {
-			// do something when there's no artwork - currently the artwork doesn't update
+			// TODO: Do something when there's no artwork - currently the artwork doesn't update and retains previous artwork
 		}
 		
 	}
+	
+	// FIXME: Don't believe this requests auth
 	@IBAction func requestAccess(_ sender: Any) {
 		MPMediaLibrary.requestAuthorization {(status) in }
 	}
@@ -132,7 +137,7 @@ class NowPlayingViewController: UIViewController {
 			if let image = artworkImage {
 				print("Adding artwork...")
 				toShare.append(image)
-				// do we need to resize images?
+				// FIXME: Do we need to resize images?
 				// toShare.append(image.resizeImage(image: image, newWidth: 600))
 			}
 		}
