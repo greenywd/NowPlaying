@@ -15,6 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
+
+		let userDefaultsDefaults = [
+			"dark_enabled" : (true ? 1 : 0),
+			"artwork_enabled" : (true ? 1 : 0)
+		]
+		
+		UserDefaults.standard.register(defaults: userDefaultsDefaults)
+		
 		return true
 	}
 

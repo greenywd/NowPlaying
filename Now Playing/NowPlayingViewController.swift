@@ -42,23 +42,24 @@ class NowPlayingViewController: UIViewController {
 				titleLabel.isHidden = false
 			}
 			
+			artworkView.isUserInteractionEnabled = true
+			artworkView.contentMode = .scaleAspectFit
+			
+			registerSettingsBundle()
+			
 			MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 			NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 			updateNowPlaying()
-			
-			artworkView.isUserInteractionEnabled = true
-			artworkView.contentMode = .scaleAspectFit
-			
-			blurEffectView = UIVisualEffectView()
-			blurEffectView?.tag = 1
-			
+			defaultsChanged()
 		}
 	}
 	
 	func updateBlurEffectView(style: UIBlurEffectStyle) {
+		blurEffectView = UIVisualEffectView()
+		blurEffectView?.tag = 10
 		
-		if let viewWithTag = self.view.viewWithTag(1) {
+		if let viewWithTag = self.view.viewWithTag(10) {
 			viewWithTag.removeFromSuperview()
 		} else {
 			print("No need to remove blur view.")
@@ -70,6 +71,7 @@ class NowPlayingViewController: UIViewController {
 		blurEffectView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 		
 		self.view.insertSubview(blurEffectView!, at: 0)
+		
 	}
 	
 	@objc func updateNowPlaying() {
@@ -136,14 +138,20 @@ class NowPlayingViewController: UIViewController {
 		}
 		
 		// https://stackoverflow.com/a/35931947
-
+		
 		let activityViewController = UIActivityViewController(activityItems: toShare, applicationActivities: nil)
 		activityViewController.popoverPresentationController?.sourceView = self.artworkView
 		activityViewController.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.saveToCameraRoll]
 		
 		self.present(activityViewController, animated: true, completion: nil)
 	}
+	
 	// https://gist.github.com/abhimuralidharan/3bcd28041f0bd81053c2f92f384ca693#file-settingsobserver-swift
+	func registerSettingsBundle(){
+		let appDefaults = [String:AnyObject]()
+		UserDefaults.standard.register(defaults: appDefaults)
+	}
+	
 	@objc func defaultsChanged() {
 		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
 			updateBlurEffectView(style: .dark)
@@ -158,8 +166,12 @@ class NowPlayingViewController: UIViewController {
 		}
 	}
 	
+	// TODO: update status bar colour on appearance change - currently only updates on view load
 	override var preferredStatusBarStyle: UIStatusBarStyle {
-		return .lightContent
+		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
+			return .lightContent
+		} else {
+			return .default
+		}
 	}
-	
 }
