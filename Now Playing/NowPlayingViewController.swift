@@ -27,6 +27,9 @@ class NowPlayingViewController: UIViewController {
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		// TODO: Authorization: Make sure this is implemented and working
+		// this should prompt the MPMediaLibrary auth to show
+		MPMediaLibrary.requestAuthorization {(status) in }
+		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 		// if medialibrary isn't authorized, change a label text to prompt for access
 		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
 			nowPlayingLabel.isHidden = true
@@ -48,7 +51,7 @@ class NowPlayingViewController: UIViewController {
 			
 			registerSettingsBundle()
 			
-			MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
+			//MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 			NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 			updateNowPlaying()
