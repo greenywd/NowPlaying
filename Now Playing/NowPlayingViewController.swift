@@ -11,7 +11,13 @@ import MediaPlayer
 
 class NowPlayingViewController: UIViewController {
 	
-	var artworkImage: UIImage?
+	struct Song {
+		var title: String
+		var albumTitle: String
+		var artist: String
+		var artwork: UIImage
+	}
+	
 	var backgroundArtworkImage: UIImage?
 	var blurEffectView: UIVisualEffectView?
 	
@@ -52,9 +58,9 @@ class NowPlayingViewController: UIViewController {
 			registerSettingsBundle()
 			
 			//MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
-			NotificationCenter.default.addObserver(self, selector: #selector(updateNowPlaying), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
-			NotificationCenter.default.addObserver(self, selector: #selector(defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
-			updateNowPlaying()
+			NotificationCenter.default.addObserver(self, selector: #selector(self.updateLabels), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(self.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+			updateLabels()
 			defaultsChanged()
 		}
 	}
@@ -78,40 +84,16 @@ class NowPlayingViewController: UIViewController {
 		
 	}
 	
-	@objc func updateNowPlaying() {
-		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+	@objc func updateLabels() {
+		let nowPlaying = getNowPlayingInfo()
+	
+		artistLabel.text = nowPlaying.artist
+		titleLabel.text = nowPlaying.title
+		artworkView.image = nowPlaying.artwork
+		backgroundArtworkImage = nowPlaying.artwork
 		
-		if let artist = systemMusicPlayer?.artist {
-			artistLabel.text = artist
-		} else {
-			artistLabel.text = "Unknown Artist"
-		}
-		
-		if let album = systemMusicPlayer?.albumTitle {
-			//nowPlaying["Album"] = album
-			print(album)
-		} else {
-			
-		}
-		
-		if let title = systemMusicPlayer?.title {
-			titleLabel.text = title
-		} else {
-			titleLabel.text = "Unknown Track"
-		}
-		
-		if let artwork = systemMusicPlayer?.artwork {
-			artworkImage = artwork.image(at: artwork.bounds.size)
-			artworkView.image = artworkImage
-			
-			backgroundArtworkImage = artworkImage!
-			
-			// FIXME: Use something other than pattern image
-			self.view.backgroundColor = UIColor(patternImage: artworkImage!)
-			
-		} else {
-			// TODO: Do something when there's no artwork - currently the artwork doesn't update and retains previous artwork
-		}
+		// FIXME: Use something other than pattern image
+		self.view.backgroundColor = UIColor(patternImage: nowPlaying.artwork)
 		
 	}
 	
@@ -120,30 +102,19 @@ class NowPlayingViewController: UIViewController {
 		MPMediaLibrary.requestAuthorization {(status) in }
 	}
 	
-	@IBAction func imageTapped(_ sender: Any) {
+	@IBAction func imageTapped(_ sender: Any? = nil) {
+		let nowPlaying = getNowPlayingInfo()
+		
 		var toShare = [Any]()
-		var text = "Now Playing - "
-		
-		if let title = titleLabel.text {
-			print("Adding text...")
-			text += title + " by "
-		}
-		
-		if let artist = artistLabel.text {
-			print("Adding text...")
-			text += artist
-		}
+		let text = "Now Playing - " + nowPlaying.title + " by " + nowPlaying.artist
 		
 		toShare.append(text)
 		
 		if UserDefaults.standard.bool(forKey: "artwork_enabled") {
-			if let image = artworkImage {
-				print("Adding artwork...")
-				toShare.append(image)
+				toShare.append(nowPlaying.artwork)
 				// FIXME: Do we need to resize images?
 				// toShare.append(image.resizeImage(image: image, newWidth: 600))
 			}
-		}
 		
 		// https://stackoverflow.com/a/35931947
 		
@@ -172,6 +143,20 @@ class NowPlayingViewController: UIViewController {
 			artistLabel.textColor = .darkText
 			titleLabel.textColor = .darkText
 		}
+	}
+	
+	func getNowPlayingInfo() -> Song {
+		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+		var artworkImage: UIImage
+		
+		if let artwork = systemMusicPlayer?.artwork {
+			artworkImage = artwork.image(at: artwork.bounds.size)!
+			
+		} else {
+			artworkImage = UIImage.init(named: "DefaultArtwork")!
+		}
+		
+		return Song.init(title: systemMusicPlayer?.title ?? "Unknown Title", albumTitle: systemMusicPlayer?.albumTitle ?? "Unknown Album", artist: systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist", artwork: artworkImage)
 	}
 	
 	// TODO: update status bar colour on appearance change - currently only updates on view load
