@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ShortcutIdentifier: String {
+	case ShareSong = "share-song"
+	case ShareAlbum
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -23,6 +28,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		]
 		
 		UserDefaults.standard.register(defaults: userDefaultsDefaults)
+		
+		UIApplication.shared.shortcutItems?.removeAll(keepingCapacity: false)
+		
+		let existingShortcutItems = UIApplication.shared.shortcutItems ?? []
+		var updatedShortcutItems = existingShortcutItems
+		var shareSong: UIApplicationShortcutItem = UIApplicationShortcutItem(type: "share-song", localizedTitle: "Share Song", localizedSubtitle: "Lift Yourself", icon: UIApplicationShortcutIcon(type: .share), userInfo: nil)
+		updatedShortcutItems.append(shareSong)
+		
+		UIApplication.shared.shortcutItems = updatedShortcutItems
 		
 		return true
 	}
@@ -49,6 +63,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 	}
 
+	
+	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Swift.Void) {
+		handleShortcut(shortcutItem)
+	}
+	
+	private func handleShortcut(_ item: UIApplicationShortcutItem) {
+		guard let actionType = ShortcutIdentifier(rawValue: item.type) else {
+			return
+		}
+		switch (actionType) {
+		case .ShareSong:
+			(window!.rootViewController as! NowPlayingViewController).imageTapped()
 
+		case .ShareAlbum:
+			print("")
+			
+		}
+	}
 }
 
