@@ -24,3 +24,8 @@ extension UIImage {
 		return newImage
 	}
 }
+
+extension Notification.Name {
+	static let shareSong = Notification.Name("shareSong")
+	static let shareAlbum = Notification.Name("shareAlbum")
+}

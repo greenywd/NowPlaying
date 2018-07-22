@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import MediaPlayer
 
 enum ShortcutIdentifier: String {
 	case ShareSong = "share-song"
-	case ShareAlbum
+	case ShareAlbum = "share-album"
 }
 
 @UIApplicationMain
@@ -21,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
-
 		let userDefaultsDefaults = [
 			"dark_enabled" : (true ? 1 : 0),
 			"artwork_enabled" : (true ? 1 : 0)
@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		let existingShortcutItems = UIApplication.shared.shortcutItems ?? []
 		var updatedShortcutItems = existingShortcutItems
-		var shareSong: UIApplicationShortcutItem = UIApplicationShortcutItem(type: "share-song", localizedTitle: "Share Song", localizedSubtitle: "Lift Yourself", icon: UIApplicationShortcutIcon(type: .share), userInfo: nil)
+		let shareSong: UIApplicationShortcutItem = UIApplicationShortcutItem(type: "share-song", localizedTitle: "Share Song", localizedSubtitle: "", icon: UIApplicationShortcutIcon(type: .share), userInfo: nil)
 		updatedShortcutItems.append(shareSong)
 		
 		UIApplication.shared.shortcutItems = updatedShortcutItems
@@ -53,10 +53,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func applicationWillEnterForeground(_ application: UIApplication) {
 		// Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+		NotificationCenter.default.post(name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 	}
 
 	func applicationDidBecomeActive(_ application: UIApplication) {
 		// Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+		NotificationCenter.default.post(name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 	}
 
 	func applicationWillTerminate(_ application: UIApplication) {
@@ -74,10 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		switch (actionType) {
 		case .ShareSong:
-			(window!.rootViewController as! NowPlayingViewController).imageTapped()
+			NotificationCenter.default.post(name: .shareSong, object: nil)
 
 		case .ShareAlbum:
-			print("")
+			print("Share album")
 			
 		}
 	}

@@ -30,6 +30,7 @@ class NowPlayingViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		// Do any additional setup after loading the view, typically from a nib.
 		
 		// TODO: Authorization: Make sure this is implemented and working
@@ -60,6 +61,7 @@ class NowPlayingViewController: UIViewController {
 			//MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 			NotificationCenter.default.addObserver(self, selector: #selector(self.updateLabels), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(self.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
+			NotificationCenter.default.addObserver(self, selector: #selector(self.imageTapped(_:)), name: .shareSong, object: nil)
 			updateLabels()
 			defaultsChanged()
 		}
@@ -137,11 +139,13 @@ class NowPlayingViewController: UIViewController {
 			nowPlayingLabel.textColor = .lightText
 			artistLabel.textColor = .lightText
 			titleLabel.textColor = .lightText
+			self.tabBarController?.tabBar.barStyle = .black
 		} else {
 			updateBlurEffectView(style: .light)
 			nowPlayingLabel.textColor = .darkText
 			artistLabel.textColor = .darkText
 			titleLabel.textColor = .darkText
+			self.tabBarController?.tabBar.barStyle = .default
 		}
 	}
 	
@@ -151,7 +155,6 @@ class NowPlayingViewController: UIViewController {
 		
 		if let artwork = systemMusicPlayer?.artwork {
 			artworkImage = artwork.image(at: artwork.bounds.size)!
-			
 		} else {
 			artworkImage = UIImage.init(named: "DefaultArtwork")!
 		}

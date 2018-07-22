@@ -133,8 +133,8 @@
 			children = (
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
-				D6323E6B20CBE868007728F9 /* Settings.bundle */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
+				D6323E6B20CBE868007728F9 /* Settings.bundle */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
 				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
