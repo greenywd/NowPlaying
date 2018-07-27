@@ -109,7 +109,7 @@
                         <sections>
                             <tableViewSection headerTitle="Appearance" id="jif-G7-DeD">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="0OG-X5-tff" style="IBUITableViewCellStyleDefault" id="lo6-Q9-PXq">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="0OG-X5-tff" style="IBUITableViewCellStyleDefault" id="lo6-Q9-PXq">
                                         <rect key="frame" x="0.0" y="55.333333333333343" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lo6-Q9-PXq" id="fdD-DL-N1N">
