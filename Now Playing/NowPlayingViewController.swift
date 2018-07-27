@@ -21,7 +21,7 @@ class NowPlayingViewController: UIViewController {
 	var backgroundArtworkImage: UIImage?
 	var blurEffectView: UIVisualEffectView?
 	
-	@IBOutlet var nowPlayingLabel: UILabel!
+	@IBOutlet var nowPlayingLabel: UILabel?
 	@IBOutlet var artworkView: UIImageView!
 	@IBOutlet var artistLabel: UILabel!
 	@IBOutlet var titleLabel: UILabel!
@@ -30,8 +30,9 @@ class NowPlayingViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+
 		// Do any additional setup after loading the view, typically from a nib.
+		self.navigationController?.title = "Now Playing"
 		
 		// TODO: Authorization: Make sure this is implemented and working
 		// this should prompt the MPMediaLibrary auth to show
@@ -39,7 +40,7 @@ class NowPlayingViewController: UIViewController {
 		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
 		// if medialibrary isn't authorized, change a label text to prompt for access
 		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
-			nowPlayingLabel.isHidden = true
+			nowPlayingLabel?.isHidden = true
 			artworkView.isHidden = true
 			artistLabel.text = "Tap here to authorize NowPlaying to access your music library!"
 			titleLabel.isHidden = true
@@ -47,8 +48,8 @@ class NowPlayingViewController: UIViewController {
 		} else {
 			
 			// assume everything else is hidden, and once authorized, show.
-			if (nowPlayingLabel.isHidden == true) {
-				nowPlayingLabel.isHidden = false
+			if let npLabel = nowPlayingLabel {
+				npLabel.isHidden = false
 				artworkView.isHidden = false
 				titleLabel.isHidden = false
 			}
@@ -64,6 +65,24 @@ class NowPlayingViewController: UIViewController {
 			NotificationCenter.default.addObserver(self, selector: #selector(self.imageTapped(_:)), name: .shareSong, object: nil)
 			updateLabels()
 			defaultsChanged()
+		}
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
+			updateBlurEffectView(style: .dark)
+			nowPlayingLabel?.textColor = .lightText
+			artistLabel.textColor = .lightText
+			titleLabel.textColor = .lightText
+			self.tabBarController?.tabBar.barStyle = .black
+			self.navigationController?.navigationBar.barStyle = .blackTranslucent
+		} else {
+			updateBlurEffectView(style: .light)
+			nowPlayingLabel?.textColor = .darkText
+			artistLabel.textColor = .darkText
+			titleLabel.textColor = .darkText
+			self.tabBarController?.tabBar.barStyle = .default
+			self.navigationController?.navigationBar.barStyle = .default
 		}
 	}
 	
@@ -105,6 +124,7 @@ class NowPlayingViewController: UIViewController {
 	}
 	
 	@IBAction func imageTapped(_ sender: Any? = nil) {
+		// TODO: move to nowplaying view if not there already
 		let nowPlaying = getNowPlayingInfo()
 		
 		var toShare = [Any]()
@@ -134,19 +154,7 @@ class NowPlayingViewController: UIViewController {
 	}
 	
 	@objc func defaultsChanged() {
-		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-			updateBlurEffectView(style: .dark)
-			nowPlayingLabel.textColor = .lightText
-			artistLabel.textColor = .lightText
-			titleLabel.textColor = .lightText
-			self.tabBarController?.tabBar.barStyle = .black
-		} else {
-			updateBlurEffectView(style: .light)
-			nowPlayingLabel.textColor = .darkText
-			artistLabel.textColor = .darkText
-			titleLabel.textColor = .darkText
-			self.tabBarController?.tabBar.barStyle = .default
-		}
+
 	}
 	
 	func getNowPlayingInfo() -> Song {
