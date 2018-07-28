@@ -8,13 +8,16 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController, UITextFieldDelegate {
 
 	@IBOutlet var darkSwitch: UISwitch!
 	@IBOutlet var artworkSwitch: UISwitch!
+	@IBOutlet var confTextField: UITextField!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+		
 		setPrefStates()
 		defaultsChanged()
 		
@@ -23,10 +26,20 @@ class SettingsViewController: UITableViewController {
 		darkSwitch.addTarget(self, action: #selector(updateUserDefaultsAppearanceDark), for: .valueChanged)
 		
 		artworkSwitch.addTarget(self, action: #selector(updateUserDefaultsFunctionalityShareArtwork), for: .valueChanged)
-
+		view.addGestureRecognizer(tap)
+		
+		self.confTextField.delegate = self
+		
         // Do any additional setup after loading the view.
     }
-    
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		UserDefaults.standard.set(self.confTextField.text, forKey: "share_text_conf")
+		
+		self.view.endEditing(true)
+		return false
+	}
+	
 	@objc func updateUserDefaultsAppearanceDark(darkSwitch: UISwitch) {
 		UserDefaults.standard.set(darkSwitch.isOn, forKey: "dark_enabled")
 	}
@@ -57,6 +70,12 @@ class SettingsViewController: UITableViewController {
 		} else {
 			artworkSwitch.setOn(false, animated: true)
 		}
+		
+		confTextField.text = UserDefaults.standard.string(forKey: "share_text_conf")
+	}
+	
+	@objc func dismissKeyboard(){
+		view.endEditing(true)
 	}
 	
 	

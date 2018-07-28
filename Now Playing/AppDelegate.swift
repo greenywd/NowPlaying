@@ -24,8 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		let userDefaultsDefaults = [
 			"dark_enabled" : (true ? 1 : 0),
-			"artwork_enabled" : (true ? 1 : 0)
-		]
+			"artwork_enabled" : (true ? 1 : 0),
+			"share_text_conf" : "Now Playing - %title% by %artist%"
+			] as [String : Any]
 		
 		UserDefaults.standard.register(defaults: userDefaultsDefaults)
 		
