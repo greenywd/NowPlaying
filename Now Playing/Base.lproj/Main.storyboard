@@ -98,11 +98,11 @@
             </objects>
             <point key="canvasLocation" x="1936.8" y="-751.47783251231533"/>
         </scene>
-        <!--Settings View Controller-->
+        <!--Settings-->
         <scene sceneID="wWl-IQ-Zjk">
             <objects>
                 <tableViewController id="f7O-K8-OQG" customClass="SettingsViewController" customModule="Now_Playing" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Yhh-wI-ZDL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="Yhh-wI-ZDL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -149,16 +149,20 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Section-2" id="chd-FH-AAj">
+                            <tableViewSection headerTitle="Functionality" id="chd-FH-AAj">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="YoU-Vl-XYF" style="IBUITableViewCellStyleDefault" id="acK-MU-ggD">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" textLabel="YoU-Vl-XYF" style="IBUITableViewCellStyleDefault" id="acK-MU-ggD">
                                         <rect key="frame" x="0.0" y="199.33333333333334" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="acK-MU-ggD" id="cxu-Fi-NpQ">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.666666666666664"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YoU-Vl-XYF">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdm-Kd-ldU">
+                                                    <rect key="frame" x="312" y="5.6666666666666572" width="49" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </switch>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Share Artwork" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YoU-Vl-XYF">
                                                     <rect key="frame" x="16" y="0.0" width="343" height="43.666666666666664"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -210,8 +214,9 @@
                             <outlet property="delegate" destination="f7O-K8-OQG" id="cPO-kp-RL0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="b4y-IT-9Q8"/>
+                    <navigationItem key="navigationItem" title="Settings" id="b4y-IT-9Q8"/>
                     <connections>
+                        <outlet property="artworkSwitch" destination="zdm-Kd-ldU" id="xyS-V9-yXt"/>
                         <outlet property="darkSwitch" destination="g81-2P-JI9" id="w3Z-ek-A6V"/>
                     </connections>
                 </tableViewController>
@@ -237,11 +242,11 @@
             </objects>
             <point key="canvasLocation" x="205" y="-379"/>
         </scene>
-        <!--Item-->
+        <!--Settings-->
         <scene sceneID="2cc-xW-g30">
             <objects>
                 <navigationController id="sfM-SI-eCL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="HCo-dz-iFH"/>
+                    <tabBarItem key="tabBarItem" title="Settings" id="HCo-dz-iFH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5aR-uV-EbQ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

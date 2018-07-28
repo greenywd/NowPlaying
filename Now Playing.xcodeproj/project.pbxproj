@@ -10,7 +10,6 @@
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D62F639220C7F39800A44662 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D62F639120C7F39800A44662 /* README.md */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
-		D6323E6C20CBE868007728F9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D6323E6B20CBE868007728F9 /* Settings.bundle */; };
 		D6323E7420CBF871007728F9 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6323E7320CBF871007728F9 /* Messages.framework */; };
 		D6323E7720CBF871007728F9 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E7620CBF871007728F9 /* MessagesViewController.swift */; };
 		D6323E7A20CBF871007728F9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6323E7820CBF871007728F9 /* MainInterface.storyboard */; };
@@ -51,7 +50,6 @@
 		D62F638F20C7E70800A44662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D62F639120C7F39800A44662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		D6323E6B20CBE868007728F9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D6323E7120CBF871007728F9 /* NowPlayingMessageExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NowPlayingMessageExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6323E7320CBF871007728F9 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
 		D6323E7620CBF871007728F9 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
@@ -134,7 +132,6 @@
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
-				D6323E6B20CBE868007728F9 /* Settings.bundle */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
 				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
@@ -238,7 +235,6 @@
 			files = (
 				D6FE38A820C629D9009BB662 /* LaunchScreen.storyboard in Resources */,
 				D6FE38A520C629D9009BB662 /* Assets.xcassets in Resources */,
-				D6323E6C20CBE868007728F9 /* Settings.bundle in Resources */,
 				D62F639220C7F39800A44662 /* README.md in Resources */,
 				D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */,
 			);

@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UITableViewController {
 
 	@IBOutlet var darkSwitch: UISwitch!
+	@IBOutlet var artworkSwitch: UISwitch!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,15 +21,18 @@ class SettingsViewController: UITableViewController {
 		NotificationCenter.default.addObserver(self, selector: #selector(self.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 		
 		darkSwitch.addTarget(self, action: #selector(updateUserDefaultsAppearanceDark), for: .valueChanged)
+		
+		artworkSwitch.addTarget(self, action: #selector(updateUserDefaultsFunctionalityShareArtwork), for: .valueChanged)
+
         // Do any additional setup after loading the view.
     }
     
 	@objc func updateUserDefaultsAppearanceDark(darkSwitch: UISwitch) {
-		if (darkSwitch.isOn) {
-			UserDefaults.standard.set(true, forKey: "dark_enabled")
-		} else {
-			UserDefaults.standard.set(false, forKey: "dark_enabled")
-		}
+		UserDefaults.standard.set(darkSwitch.isOn, forKey: "dark_enabled")
+	}
+	
+	@objc func updateUserDefaultsFunctionalityShareArtwork(artworkSwitch: UISwitch) {
+		UserDefaults.standard.set(artworkSwitch.isOn, forKey: "artwork_enabled")
 	}
 	
 	@objc func defaultsChanged() {
@@ -43,11 +47,19 @@ class SettingsViewController: UITableViewController {
 	
 	func setPrefStates() {
 		if (UserDefaults.standard.string(forKey: "dark_enabled") == "1") {
-			darkSwitch.setOn(true, animated: false)
+			darkSwitch.setOn(true, animated: true)
 		} else {
-			darkSwitch.setOn(false, animated: false)
+			darkSwitch.setOn(false, animated: true)
+		}
+		
+		if (UserDefaults.standard.string(forKey: "artwork_enabled") == "1") {
+			artworkSwitch.setOn(true, animated: true)
+		} else {
+			artworkSwitch.setOn(false, animated: true)
 		}
 	}
+	
+	
     /*
     // MARK: - Navigation
 
