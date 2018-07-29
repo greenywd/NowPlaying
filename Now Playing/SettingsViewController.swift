@@ -16,23 +16,22 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
 		
-		setPrefStates()
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+		view.addGestureRecognizer(tap)
 		defaultsChanged()
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(self.defaultsChanged), name: UserDefaults.didChangeNotification, object: nil)
 		
 		darkSwitch.addTarget(self, action: #selector(updateUserDefaultsAppearanceDark), for: .valueChanged)
-		
 		artworkSwitch.addTarget(self, action: #selector(updateUserDefaultsFunctionalityShareArtwork), for: .valueChanged)
 		
-		view.addGestureRecognizer(tap)
-		
 		self.confTextField.delegate = self
-		
-        // Do any additional setup after loading the view.
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		setPrefStates()
+	}
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		UserDefaults.standard.set(self.confTextField.text, forKey: "share_text_conf")

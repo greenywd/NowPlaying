@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OlR-dC-BVW">
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OlR-dC-BVW">
                                 <rect key="frame" x="37" y="149" width="301" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -45,17 +45,14 @@
                                     <outletCollection property="gestureRecognizers" destination="1ep-AC-ITC" appends="YES" id="cSj-cx-X4S"/>
                                 </connections>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
-                                <rect key="frame" x="37" y="477" width="301" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
+                                <rect key="frame" x="37" y="477" width="301" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="faS-T2-iCd" appends="YES" id="cqj-uh-vbV"/>
-                                </connections>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Self Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
-                                <rect key="frame" x="142.66666666666666" y="515" width="90" height="21"/>
+                                <rect key="frame" x="142.66666666666666" y="514.33333333333337" width="90" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66274509800000003" green="0.66666666669999997" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -80,7 +77,6 @@
                     <connections>
                         <outlet property="artistLabel" destination="y9N-hR-Fec" id="gMB-wg-Yiz"/>
                         <outlet property="artworkView" destination="OlR-dC-BVW" id="MvB-WK-gDn"/>
-                        <outlet property="requestAccessTapGestureRecognizer" destination="faS-T2-iCd" id="hBN-vv-0wb"/>
                         <outlet property="titleLabel" destination="DYt-vi-SRs" id="775-fg-T6T"/>
                     </connections>
                 </viewController>
@@ -88,11 +84,6 @@
                 <tapGestureRecognizer id="1ep-AC-ITC">
                     <connections>
                         <action selector="share:" destination="BYZ-38-t0r" id="0i4-QJ-ACI"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="faS-T2-iCd">
-                    <connections>
-                        <action selector="requestAccess:" destination="BYZ-38-t0r" id="0l5-9V-WxL"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

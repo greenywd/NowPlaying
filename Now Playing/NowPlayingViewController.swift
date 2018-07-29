@@ -12,9 +12,9 @@ import MediaPlayer
 class NowPlayingViewController: UIViewController {
 	
 	struct Song {
-		static var title: String?
-		static var albumTitle: String?
-		static var artist: String?
+		static var title: String = "Unknown Title"
+		static var albumTitle: String = "Unknown Album"
+		static var artist: String = "Unknown Artist"
 		static var artwork: UIImage?
 	}
 	
@@ -25,40 +25,33 @@ class NowPlayingViewController: UIViewController {
 	@IBOutlet var artistLabel: UILabel!
 	@IBOutlet var titleLabel: UILabel!
 	
-	@IBOutlet var requestAccessTapGestureRecognizer: UITapGestureRecognizer!
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
-		// Do any additional setup after loading the view, typically from a nib.
-		self.navigationController?.title = "Now Playing"
-		
-		// TODO: Authorization: Make sure this is implemented and working
-		// this should prompt the MPMediaLibrary auth to show
-		MPMediaLibrary.requestAuthorization {(status) in }
+	
 		MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
+		
+		// FIXME: app needs to be restarted after giving access
 		// if medialibrary isn't authorized, change a label text to prompt for access
 		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
 			artworkView.isHidden = true
 			artistLabel.text = "Tap here to authorize NowPlaying to access your music library!"
+			artistLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openApplicationSettings)))
 			titleLabel.isHidden = true
 			
 		} else {
 			
 			// assume everything else is hidden, and once authorized, show.
-			if (MPMediaLibrary.authorizationStatus() == MPMediaLibraryAuthorizationStatus.authorized) {
+			if (MPMediaLibrary.authorizationStatus() == .authorized) {
 				artworkView.isHidden = false
 				titleLabel.isHidden = false
 			}
-			
-			artworkView.isUserInteractionEnabled = true
-			artworkView.contentMode = .scaleAspectFit
-			
-			registerSettingsBundle()
-			
-			//MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
+		
+			NotificationCenter.default.addObserver(self, selector: #selector(self.getNowPlayingInfo), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(self.updateLabels), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(self.share(_:)), name: .shareSong, object: nil)
+			
+			registerSettingsBundle()
+			getNowPlayingInfo()
 			updateLabels()
 		}
 	}
@@ -99,34 +92,41 @@ class NowPlayingViewController: UIViewController {
 		} else {
 			print("Error: Could not insert blurEffectView at layer 0.")
 		}
-		
 	}
 	
 	@objc func updateLabels() {
-		getNowPlayingInfo()
-
-		artistLabel.text = Song.artist
-		titleLabel.text = Song.title
-		artworkView.image = Song.artwork
-		backgroundArtworkImage = Song.artwork
+		let playbackState = MPMusicPlayerController.systemMusicPlayer.playbackState
 		
-		// FIXME: Use something other than pattern image OR increase the image size so that we can't see the patterning
-		if let artwork = Song.artwork {
-			self.view.backgroundColor = UIColor(patternImage: artwork)
+		artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : Song.artist
+		titleLabel.text = (playbackState == .stopped) ? "" : Song.title
+		
+		if (playbackState == .stopped) {
+			artworkView.image = nil
+		} else {
+			if let artwork = Song.artwork {
+				artworkView.image = artwork
+				backgroundArtworkImage = artwork
+				// TODO: center this?
+				self.view.backgroundColor = UIColor(patternImage: artwork.resizeImage(image: artwork, newHeight: UIScreen.main.bounds.height)!)
+			} else {
+				artworkView.image = nil
+			}
 		}
 	}
 	
-	// FIXME: Don't believe this requests auth
-	@IBAction func requestAccess(_ sender: Any) {
-		MPMediaLibrary.requestAuthorization {(status) in }
+	@objc func openApplicationSettings() {
+		if let url = URL(string:UIApplicationOpenSettingsURLString) {
+			if UIApplication.shared.canOpenURL(url) {
+				UIApplication.shared.open(url, options: [:], completionHandler: nil)
+			}
+		}
 	}
 	
 	@IBAction func share(_ sender: Any? = nil) {
-		// TODO: move to nowplaying view if not there already
-		getNowPlayingInfo()
+		tabBarController?.selectedIndex = 0
 		
 		var toShare = [Any]()
-		let text = "Now Playing - " + Song.title! + " by " + Song.artist!
+		let text = "Now Playing - " + Song.title + " by " + Song.artist
 		
 		toShare.append(text)
 		
@@ -153,15 +153,13 @@ class NowPlayingViewController: UIViewController {
 		UserDefaults.standard.register(defaults: appDefaults)
 	}
 	
-	func getNowPlayingInfo() {
+	@objc func getNowPlayingInfo() {
 		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-		print("getting info")
+		
 		Song.title = systemMusicPlayer?.title ?? "Unknown Title"
 		Song.artist = systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist"
 		Song.albumTitle = systemMusicPlayer?.albumTitle ?? "Unknown Album"
-		Song.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? UIImage.init(named: "DefaultArtwork")!
-		
-		//return Song.init(title: systemMusicPlayer?.title ?? "Unknown Title", albumTitle: systemMusicPlayer?.albumTitle ?? "Unknown Album", artist: systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist", artwork: artworkImage)
+		Song.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? nil
 	}
 	
 	// TODO: update status bar colour on appearance change - currently only updates on view load

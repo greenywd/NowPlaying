@@ -11,14 +11,16 @@ import UIKit
 
 extension UIImage {
 	
-	// https://stackoverflow.com/a/31984155/8097428
-	func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage {
+	// adaptation of https://stackoverflow.com/a/39809874/8097428
+	
+	func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage? {
 		
-		let scale = newWidth / image.size.width
-		let newHeight = image.size.height * scale
+		let scale = newHeight / image.size.height
+		let newWidth = image.size.width * scale
 		UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
 		image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-		let newImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+		
+		let newImage = UIGraphicsGetImageFromCurrentImageContext()
 		UIGraphicsEndImageContext()
 		
 		return newImage
