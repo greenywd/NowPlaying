@@ -26,6 +26,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 		darkSwitch.addTarget(self, action: #selector(updateUserDefaultsAppearanceDark), for: .valueChanged)
 		
 		artworkSwitch.addTarget(self, action: #selector(updateUserDefaultsFunctionalityShareArtwork), for: .valueChanged)
+		
 		view.addGestureRecognizer(tap)
 		
 		self.confTextField.delegate = self

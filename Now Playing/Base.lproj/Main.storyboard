@@ -87,7 +87,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer id="1ep-AC-ITC">
                     <connections>
-                        <action selector="imageTapped:" destination="BYZ-38-t0r" id="0i4-QJ-ACI"/>
+                        <action selector="share:" destination="BYZ-38-t0r" id="0i4-QJ-ACI"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer id="faS-T2-iCd">
