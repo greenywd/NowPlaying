@@ -12,11 +12,10 @@ import MediaPlayer
 class NowPlayingViewController: UIViewController {
 	
 	struct Song {
-		var title: String
-		var albumTitle: String
-		var artist: String
-		// TODO: Mark this as optional?
-		var artwork: UIImage
+		static var title: String?
+		static var albumTitle: String?
+		static var artist: String?
+		static var artwork: UIImage?
 	}
 	
 	var backgroundArtworkImage: UIImage?
@@ -104,16 +103,17 @@ class NowPlayingViewController: UIViewController {
 	}
 	
 	@objc func updateLabels() {
-		let nowPlaying = getNowPlayingInfo()
-	
-		artistLabel.text = nowPlaying.artist
-		titleLabel.text = nowPlaying.title
-		artworkView.image = nowPlaying.artwork
-		backgroundArtworkImage = nowPlaying.artwork
+		getNowPlayingInfo()
+
+		artistLabel.text = Song.artist
+		titleLabel.text = Song.title
+		artworkView.image = Song.artwork
+		backgroundArtworkImage = Song.artwork
 		
 		// FIXME: Use something other than pattern image OR increase the image size so that we can't see the patterning
-		self.view.backgroundColor = UIColor(patternImage: nowPlaying.artwork)
-		
+		if let artwork = Song.artwork {
+			self.view.backgroundColor = UIColor(patternImage: artwork)
+		}
 	}
 	
 	// FIXME: Don't believe this requests auth
@@ -123,19 +123,19 @@ class NowPlayingViewController: UIViewController {
 	
 	@IBAction func share(_ sender: Any? = nil) {
 		// TODO: move to nowplaying view if not there already
-		
-		let nowPlaying = getNowPlayingInfo()
-		print(nowPlaying)
+		getNowPlayingInfo()
 		
 		var toShare = [Any]()
-		let text = "Now Playing - " + nowPlaying.title + " by " + nowPlaying.artist
+		let text = "Now Playing - " + Song.title! + " by " + Song.artist!
 		
 		toShare.append(text)
 		
 		if UserDefaults.standard.bool(forKey: "artwork_enabled") {
-				toShare.append(nowPlaying.artwork)
+			if let artwork = Song.artwork {
+				toShare.append(artwork)
 				// FIXME: Do we need to resize images?
 				// toShare.append(image.resizeImage(image: image, newWidth: 600))
+			}
 		}
 		
 		// https://stackoverflow.com/a/35931947
@@ -153,11 +153,15 @@ class NowPlayingViewController: UIViewController {
 		UserDefaults.standard.register(defaults: appDefaults)
 	}
 	
-	func getNowPlayingInfo() -> Song {
+	func getNowPlayingInfo() {
 		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-		let artworkImage = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? UIImage.init(named: "DefaultArtwork")!
+		print("getting info")
+		Song.title = systemMusicPlayer?.title ?? "Unknown Title"
+		Song.artist = systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist"
+		Song.albumTitle = systemMusicPlayer?.albumTitle ?? "Unknown Album"
+		Song.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? UIImage.init(named: "DefaultArtwork")!
 		
-		return Song.init(title: systemMusicPlayer?.title ?? "Unknown Title", albumTitle: systemMusicPlayer?.albumTitle ?? "Unknown Album", artist: systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist", artwork: artworkImage)
+		//return Song.init(title: systemMusicPlayer?.title ?? "Unknown Title", albumTitle: systemMusicPlayer?.albumTitle ?? "Unknown Album", artist: systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist", artwork: artworkImage)
 	}
 	
 	// TODO: update status bar colour on appearance change - currently only updates on view load

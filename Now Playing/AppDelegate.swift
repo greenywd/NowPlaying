@@ -39,6 +39,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		UIApplication.shared.shortcutItems = updatedShortcutItems
 		
+		print(launchOptions)
+		
+		if launchOptions?[.shortcutItem] != nil {
+			handleShortcut(launchOptions?[.shortcutItem] as! UIApplicationShortcutItem)
+			print("yeet")
+		}
+		
+		print("Done")
 		return true
 	}
 
