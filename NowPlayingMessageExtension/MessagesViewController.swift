@@ -19,9 +19,6 @@ class MessagesViewController: MSMessagesAppViewController {
 		static var artwork: UIImage?
 	}
 	
-	@IBOutlet var shareSong: UIButton!
-	@IBOutlet var shareAlbum: UIButton!
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
