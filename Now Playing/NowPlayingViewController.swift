@@ -32,19 +32,15 @@ class NowPlayingViewController: UIViewController {
 		
 		// FIXME: app needs to be restarted after giving access
 		// if medialibrary isn't authorized, change a label text to prompt for access
-		if (MPMediaLibrary.authorizationStatus().rawValue != 3) {
+		if (MPMediaLibrary.authorizationStatus() != .authorized) {
 			artworkView.isHidden = true
 			artistLabel.text = "Tap here to authorize NowPlaying to access your music library!"
 			artistLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openApplicationSettings)))
 			titleLabel.isHidden = true
-			
 		} else {
-			
 			// assume everything else is hidden, and once authorized, show.
-			if (MPMediaLibrary.authorizationStatus() == .authorized) {
-				artworkView.isHidden = false
-				titleLabel.isHidden = false
-			}
+			artworkView.isHidden = false
+			titleLabel.isHidden = false
 		
 			NotificationCenter.default.addObserver(self, selector: #selector(self.getNowPlayingInfo), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
 			NotificationCenter.default.addObserver(self, selector: #selector(self.updateLabels), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
@@ -56,7 +52,7 @@ class NowPlayingViewController: UIViewController {
 		}
 	}
 	
-	override func viewDidAppear(_ animated: Bool) {
+	override func viewWillAppear(_ animated: Bool) {
 		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
 			updateBlurEffectView(style: .dark)
 			artistLabel.textColor = .lightText
