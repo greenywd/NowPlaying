@@ -12,10 +12,12 @@ import MediaPlayer
 
 class MessagesViewController: MSMessagesAppViewController {
 	
-	var artistStr: String?
-	var titleStr: String?
-	var albumStr: String?
-	var artworkImg: UIImage?
+	struct Song {
+		static var title: String = "Unknown Title"
+		static var albumTitle: String = "Unknown Album"
+		static var artist: String = "Unknown Artist"
+		static var artwork: UIImage?
+	}
 	
 	@IBOutlet var shareSong: UIButton!
 	@IBOutlet var shareAlbum: UIButton!
@@ -23,82 +25,27 @@ class MessagesViewController: MSMessagesAppViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		shareSong.titleLabel?.text = "Share Song"
     }
 	
-	func updateNowPlaying(isSharingAlbum: Bool) {
-		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-		print(isSharingAlbum)
-		if (isSharingAlbum) {
-			
-			if let artist = systemMusicPlayer?.artist {
-				artistStr = artist
-			}
-			
-			if let album = systemMusicPlayer?.albumTitle {
-				titleStr = album
-			}
-			
-			if let artwork = systemMusicPlayer?.artwork {
-				artworkImg = artwork.image(at: artwork.bounds.size)
-			
-			} else {
-				// do something when there's no artwork - currently the artwork doesn't update
-			}
-			
-		} else {
-			
-			if let artist = systemMusicPlayer?.artist {
-				artistStr = artist
-			}
-			
-			if let title = systemMusicPlayer?.title {
-				titleStr = title
-			}
-			
-			if let artwork = systemMusicPlayer?.artwork {
-				artworkImg = artwork.image(at: artwork.bounds.size)
-			} else {
-				// do something when there's no artwork - currently the artwork doesn't update
-			}
-			
-		}
-		
-	}
-	
 	@IBAction func shareAlbumPressed(_ sender: Any) {
-		updateNowPlaying(isSharingAlbum: true)
 		composeMessage(isSharingAlbum: true)
 	
 	}
 	@IBAction func shareButtonPressed(_ sender: Any) {
-		updateNowPlaying(isSharingAlbum: false)
 		composeMessage(isSharingAlbum: false)
 	}
 	
 	private func composeMessage(isSharingAlbum: Bool) {
+		getNowPlayingInfo()
+		
 		let conversation = activeConversation
 		let session = conversation?.selectedMessage?.session ?? MSSession()
 		
 		let layout = MSMessageTemplateLayout()
-		
-		if let artwork = artworkImg {
-			layout.image = artwork
-		}
-		if (isSharingAlbum) {
-			layout.imageTitle = "Now Playing Album:"
-			
-		} else {
-			layout.imageTitle = "Now Playing Song:"
-		}
-		
-		if let title = titleStr {
-			layout.caption = title
-		}
-
-		if let artist = artistStr {
-			layout.subcaption = artist
-		}
+		layout.image = Song.artwork
+		layout.imageTitle =  (isSharingAlbum == true) ? "Now Playing Album:" : "Now Playing Song:"
+		layout.caption = Song.title
+		layout.subcaption = Song.artist
 		
 		let message = MSMessage(session: session)
 		message.layout = layout
@@ -107,12 +54,21 @@ class MessagesViewController: MSMessagesAppViewController {
 		conversation?.insert(message)
 	}
 	
+	func getNowPlayingInfo() {
+		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+		
+		Song.title = systemMusicPlayer?.title ?? "Unknown Title"
+		Song.artist = systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist"
+		Song.albumTitle = systemMusicPlayer?.albumTitle ?? "Unknown Album"
+		Song.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? nil
+	}
+	
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
         // Called when the extension is about to move from the inactive to active state.
         // This will happen when the extension is about to present UI.
-        
+		
         // Use this method to configure the extension and restore previously stored state.
     }
     

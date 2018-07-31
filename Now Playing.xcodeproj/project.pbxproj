@@ -64,7 +64,6 @@
 		D6FE38A420C629D9009BB662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FE38A720C629D9009BB662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D6FE38A920C629D9009BB662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D6FE38AF20C62A0A009BB662 /* Testing.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Testing.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,7 +136,6 @@
 				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
 				D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */,
 				D6FE38A920C629D9009BB662 /* Info.plist */,
-				D6FE38AF20C62A0A009BB662 /* Testing.playground */,
 			);
 			path = "Now Playing";
 			sourceTree = "<group>";
