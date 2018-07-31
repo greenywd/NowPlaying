@@ -14,6 +14,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 	@IBOutlet var artworkSwitch: UISwitch!
 	@IBOutlet var confTextField: UITextField!
 	
+    // MARK: - Class Functions
+    
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -33,6 +35,8 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 		setPrefStates()
 	}
 	
+    // MARK: - Class Functions (Custom)
+    
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		UserDefaults.standard.set(self.confTextField.text, forKey: "share_text_conf")
 		
@@ -40,14 +44,16 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 		return false
 	}
 	
+    // Set dark mode on/off
 	@objc func updateUserDefaultsAppearanceDark(darkSwitch: UISwitch) {
 		UserDefaults.standard.set(darkSwitch.isOn, forKey: "dark_enabled")
 	}
-	
+    
 	@objc func updateUserDefaultsFunctionalityShareArtwork(artworkSwitch: UISwitch) {
 		UserDefaults.standard.set(artworkSwitch.isOn, forKey: "artwork_enabled")
 	}
 	
+    // Update current UI if appearance is being change.
 	@objc func defaultsChanged() {
 		if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
 			self.navigationController?.navigationBar.barStyle = .blackTranslucent
@@ -58,6 +64,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 		}
 	}
 	
+    // Set the UI elements to reflect the user's current preferences.
 	func setPrefStates() {
 		if (UserDefaults.standard.string(forKey: "dark_enabled") == "1") {
 			darkSwitch.setOn(true, animated: true)
@@ -70,7 +77,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
 		} else {
 			artworkSwitch.setOn(false, animated: true)
 		}
-		
+        // TODO: Implement custom share text based on this key
 		confTextField.text = UserDefaults.standard.string(forKey: "share_text_conf")
 	}
 	
