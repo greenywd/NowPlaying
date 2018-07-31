@@ -44,7 +44,7 @@ class MessagesViewController: MSMessagesAppViewController {
 		let layout = MSMessageTemplateLayout()
 		layout.image = Song.artwork
 		layout.imageTitle =  (isSharingAlbum == true) ? "Now Playing Album:" : "Now Playing Song:"
-		layout.caption = Song.title
+        layout.caption = (isSharingAlbum == true) ? Song.albumTitle : Song.title
 		layout.subcaption = Song.artist
 		
 		let message = MSMessage(session: session)
