@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D6218367221421B800F4BA6B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6218366221421B800F4BA6B /* Spotify.swift */; };
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D62F639220C7F39800A44662 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D62F639120C7F39800A44662 /* README.md */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D6218366221421B800F4BA6B /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		D62F638F20C7E70800A44662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D62F639120C7F39800A44662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
 				D642677A2213F01B00259034 /* NowPlaying.swift */,
+				D6218366221421B800F4BA6B /* Spotify.swift */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
@@ -194,10 +197,11 @@
 				TargetAttributes = {
 					D6323E7020CBF871007728F9 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					D6FE389920C629D7009BB662 = {
 						CreatedOnToolsVersion = 10.0;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 				};
 			};
@@ -256,6 +260,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6218367221421B800F4BA6B /* Spotify.swift in Sources */,
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
 				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
