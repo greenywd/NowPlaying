@@ -83,8 +83,8 @@ class NowPlayingViewController: UIViewController {
 		blurEffectView = UIVisualEffectView()
 		blurEffectView?.tag = 10
 		
-		if let viewWithTag = self.view.viewWithTag(10) {
-			viewWithTag.removeFromSuperview()
+		if let blurView = self.view.viewWithTag(10) {
+			blurView.removeFromSuperview()
 		} else {
 			print("No need to remove blur view.")
 		}

@@ -15,6 +15,7 @@
 		D6323E7A20CBF871007728F9 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6323E7820CBF871007728F9 /* MainInterface.storyboard */; };
 		D6323E7C20CBF874007728F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6323E7B20CBF874007728F9 /* Assets.xcassets */; };
 		D6323E8020CBF874007728F9 /* NowPlayingMessageExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D6323E7120CBF871007728F9 /* NowPlayingMessageExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D642677B2213F01B00259034 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642677A2213F01B00259034 /* NowPlaying.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
@@ -56,6 +57,7 @@
 		D6323E7920CBF871007728F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D6323E7B20CBF874007728F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6323E7D20CBF874007728F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D642677A2213F01B00259034 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
 		D698450B20D5E4AA0065D9D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE389D20C629D7009BB662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			children = (
 				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
+				D642677A2213F01B00259034 /* NowPlaying.swift */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
+				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
