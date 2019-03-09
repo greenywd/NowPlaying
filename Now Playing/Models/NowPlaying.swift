@@ -10,13 +10,13 @@ import Foundation
 import MediaPlayer
 import UIKit
 
-class NowPlaying {
+struct NowPlaying {
     
     // Struct created with static vars to store the contents of the current song - may be expanded in the future.
     struct Song {
-        var title: String?
-        var albumTitle: String?
-        var artist: String?
+        var title: String? = "Unknown Title"
+        var albumTitle: String? = "Unknown Artist"
+        var artist: String? = "Unknown Album"
         var artwork: UIImage?
     }
     
@@ -24,33 +24,24 @@ class NowPlaying {
         MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
     }
     
-    func requestAuthorization() {
-        MPMediaLibrary.requestAuthorization() { status in
-            
-        }
-    }
-    
     // Helper function to get the data from the Now Playing item and update the Song struct.
     func getNowPlayingInfo() -> Song {
-        let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
+        let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
         
-        var np = Song()
-        np.title = systemMusicPlayer?.title ?? "Unknown Title"
-        np.artist = systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist"
-        np.albumTitle = systemMusicPlayer?.albumTitle ?? "Unknown Album"
-        np.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? nil
-        
-        return np
+        return Song(title: nowPlaying?.title,
+                    albumTitle: nowPlaying?.albumTitle,
+                    artist: nowPlaying?.artist ?? nowPlaying?.albumArtist,
+                    artwork: nowPlaying?.artwork?.image(at: (nowPlaying?.artwork?.bounds.size)!))
     }
     
-    func share() -> [Any] {
-        let np = self.getNowPlayingInfo()
+    func share(song: Song? = nil) -> [Any] {
+        
+        let np: Song = song ?? self.getNowPlayingInfo()
         
         var toShare = [Any]()
         let text = "Now Playing - " + (np.title ?? "Unknown Title") + " by " + (np.artist ?? "Unknown Artist")
         
         toShare.append(text)
-        
         // If the user wants to share artwork, lets prepare it to be shared.
         if UserDefaults.standard.bool(forKey: "artwork_enabled") {
             if let artwork = np.artwork {
