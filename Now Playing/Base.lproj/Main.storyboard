@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ycz-PS-ZVU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.68" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ycz-PS-ZVU">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14278.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,44 +30,59 @@
         <!--Now Playing-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="NowPlayingViewController" customModule="Now_Playing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NowPlayingVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="NowPlayingViewController" customModule="Now_Playing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HFf-be-gH9">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" id="20R-1J-dQC">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <vibrancyEffect>
+                                    <blurEffect style="light"/>
+                                </vibrancyEffect>
+                            </visualEffectView>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OlR-dC-BVW">
                                 <rect key="frame" x="37" y="149" width="301" height="300"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="300" id="FNf-xa-xMn"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="1ep-AC-ITC" appends="YES" id="cSj-cx-X4S"/>
-                                </connections>
                             </imageView>
-                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Frank Ocean" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
-                                <rect key="frame" x="37" y="477" width="301" height="20.333333333333314"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Self Control" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
-                                <rect key="frame" x="142.66666666666666" y="514.33333333333337" width="90" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Pursuit of Happiness (Nightmare) [feat. MGMT &amp; Ratatat]" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYt-vi-SRs">
+                                <rect key="frame" x="37" y="522" width="301" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Omq-wB-eXz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.66274509800000003" green="0.66666666669999997" blue="0.67450980390000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Kid Cudi" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y9N-hR-Fec">
+                                <rect key="frame" x="37" y="486" width="301" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.66274509803921566" green="0.66666666666666663" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" red="0.16078431372549018" green="0.16470588235294117" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="DYt-vi-SRs" firstAttribute="top" secondItem="y9N-hR-Fec" secondAttribute="bottom" constant="17" id="V07-AB-bjm"/>
-                            <constraint firstItem="y9N-hR-Fec" firstAttribute="leading" secondItem="OlR-dC-BVW" secondAttribute="leading" id="doj-Sf-VMQ"/>
-                            <constraint firstItem="OlR-dC-BVW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="jrl-cQ-9Q9"/>
-                            <constraint firstItem="y9N-hR-Fec" firstAttribute="trailing" secondItem="OlR-dC-BVW" secondAttribute="trailing" id="nAd-CG-6gP"/>
-                            <constraint firstItem="y9N-hR-Fec" firstAttribute="top" secondItem="OlR-dC-BVW" secondAttribute="bottom" constant="28" id="oZV-mP-LGC"/>
-                            <constraint firstItem="OlR-dC-BVW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="qvA-Ho-Gv2"/>
-                            <constraint firstItem="DYt-vi-SRs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="rh3-os-jp3"/>
-                            <constraint firstItem="OlR-dC-BVW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yC1-D7-38c"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="top" secondItem="y9N-hR-Fec" secondAttribute="bottom" constant="15" id="0Du-aY-EGr"/>
+                            <constraint firstItem="OlR-dC-BVW" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="61" id="54d-BY-eXo"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="7Mo-b3-dBl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="OlR-dC-BVW" secondAttribute="trailing" constant="37" id="9SO-89-43H"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="DYt-vi-SRs" secondAttribute="bottom" constant="157" id="BLl-fy-7Cg"/>
+                            <constraint firstItem="y9N-hR-Fec" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="FuR-CM-9vI"/>
+                            <constraint firstItem="y9N-hR-Fec" firstAttribute="top" secondItem="OlR-dC-BVW" secondAttribute="bottom" constant="37" id="MVf-RG-k6u"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="trailing" secondItem="OlR-dC-BVW" secondAttribute="trailing" id="UoR-mz-Ise"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="eMR-Hf-oRw"/>
+                            <constraint firstItem="y9N-hR-Fec" firstAttribute="leading" secondItem="OlR-dC-BVW" secondAttribute="leading" id="uS9-jK-JT2"/>
+                            <constraint firstItem="DYt-vi-SRs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="y9N-hR-Fec" secondAttribute="leading" id="yyS-hx-PZJ"/>
+                            <constraint firstItem="OlR-dC-BVW" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="37" id="z5K-lS-ziu"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -77,6 +92,7 @@
                     <connections>
                         <outlet property="artistLabel" destination="y9N-hR-Fec" id="gMB-wg-Yiz"/>
                         <outlet property="artworkView" destination="OlR-dC-BVW" id="MvB-WK-gDn"/>
+                        <outlet property="blurView" destination="HFf-be-gH9" id="0sT-qV-QQ7"/>
                         <outlet property="titleLabel" destination="DYt-vi-SRs" id="775-fg-T6T"/>
                     </connections>
                 </viewController>
@@ -223,16 +239,18 @@
             </objects>
             <point key="canvasLocation" x="1936.8" y="-78.325123152709367"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Now Playing Tab Bar Controller-->
         <scene sceneID="XTd-o5-mdY">
             <objects>
-                <tabBarController id="ycz-PS-ZVU" sceneMemberID="viewController">
+                <tabBarController id="ycz-PS-ZVU" customClass="NowPlayingTabBarController" customModule="Now_Playing" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="7FI-KY-3ha">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
+                        <outlet property="tab" destination="7FI-KY-3ha" id="CO4-iQ-Z9D"/>
+                        <outlet property="tabBar" destination="7FI-KY-3ha" id="eHF-Xc-uqh"/>
                         <segue destination="Myk-ia-Yii" kind="relationship" relationship="viewControllers" id="LMV-ZG-YHu"/>
                         <segue destination="sfM-SI-eCL" kind="relationship" relationship="viewControllers" id="gk5-6j-GXD"/>
                     </connections>

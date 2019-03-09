@@ -28,6 +28,8 @@ extension UIImage {
 }
 
 extension Notification.Name {
-	static let shareSong = Notification.Name("shareSong")
-	static let shareAlbum = Notification.Name("shareAlbum")
+	static let NowPlayingShareSong = Notification.Name("NowPlayingShareSong")
+	static let NowPlayingShareAlbum = Notification.Name("NowPlayingShareAlbum")
+    static let NowPlayingInitialSetup = Notification.Name("NowPlayingInitialSetup")
+    static let MPMediaLibraryUnauthorized = Notification.Name("MPMediaLibraryUnauthorized")
 }

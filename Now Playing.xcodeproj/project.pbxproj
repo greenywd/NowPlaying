@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		D6218367221421B800F4BA6B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6218366221421B800F4BA6B /* Spotify.swift */; };
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
-		D62F639220C7F39800A44662 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = D62F639120C7F39800A44662 /* README.md */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
 		D6323E7420CBF871007728F9 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6323E7320CBF871007728F9 /* Messages.framework */; };
 		D6323E7720CBF871007728F9 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E7620CBF871007728F9 /* MessagesViewController.swift */; };
@@ -17,6 +16,7 @@
 		D6323E7C20CBF874007728F9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6323E7B20CBF874007728F9 /* Assets.xcassets */; };
 		D6323E8020CBF874007728F9 /* NowPlayingMessageExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D6323E7120CBF871007728F9 /* NowPlayingMessageExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D642677B2213F01B00259034 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642677A2213F01B00259034 /* NowPlaying.swift */; };
+		D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
@@ -58,16 +58,17 @@
 		D6323E7620CBF871007728F9 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
 		D6323E7920CBF871007728F9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		D6323E7B20CBF874007728F9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D6323E7D20CBF874007728F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D642677A2213F01B00259034 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
 		D698450B20D5E4AA0065D9D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingTabBarController.swift; sourceTree = "<group>"; };
+		D6F8DAAA222A150400EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6F8DAAF222A165E00EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE389D20C629D7009BB662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
 		D6FE38A220C629D7009BB662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D6FE38A420C629D9009BB662 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D6FE38A720C629D9009BB662 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D6FE38A920C629D9009BB662 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +104,49 @@
 			children = (
 				D6323E7620CBF871007728F9 /* MessagesViewController.swift */,
 				D6323E7820CBF871007728F9 /* MainInterface.storyboard */,
-				D6323E7B20CBF874007728F9 /* Assets.xcassets */,
-				D6323E7D20CBF874007728F9 /* Info.plist */,
+				D6F8DAAC222A157800EA1F08 /* Supporting Files */,
 			);
 			path = NowPlayingMessageExtension;
+			sourceTree = "<group>";
+		};
+		D6F8DAA5222A13E400EA1F08 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
+				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
+				D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D6F8DAA6222A140300EA1F08 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D642677A2213F01B00259034 /* NowPlaying.swift */,
+				D6218366221421B800F4BA6B /* Spotify.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		D6F8DAA7222A143200EA1F08 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
+				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
+				D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */,
+				D62F638F20C7E70800A44662 /* Extensions.swift */,
+				D6F8DAAF222A165E00EA1F08 /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D6F8DAAC222A157800EA1F08 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D6323E7B20CBF874007728F9 /* Assets.xcassets */,
+				D6F8DAAA222A150400EA1F08 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		D6FE389120C629D7009BB662 = {
@@ -132,16 +172,10 @@
 		D6FE389C20C629D7009BB662 /* Now Playing */ = {
 			isa = PBXGroup;
 			children = (
-				D6FE389D20C629D7009BB662 /* AppDelegate.swift */,
-				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
-				D642677A2213F01B00259034 /* NowPlaying.swift */,
-				D6218366221421B800F4BA6B /* Spotify.swift */,
-				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
-				D62F638F20C7E70800A44662 /* Extensions.swift */,
+				D6F8DAA7222A143200EA1F08 /* Supporting Files */,
+				D6F8DAA6222A140300EA1F08 /* Models */,
+				D6F8DAA5222A13E400EA1F08 /* Controllers */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
-				D6FE38A420C629D9009BB662 /* Assets.xcassets */,
-				D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */,
-				D6FE38A920C629D9009BB662 /* Info.plist */,
 			);
 			path = "Now Playing";
 			sourceTree = "<group>";
@@ -240,7 +274,6 @@
 			files = (
 				D6FE38A820C629D9009BB662 /* LaunchScreen.storyboard in Resources */,
 				D6FE38A520C629D9009BB662 /* Assets.xcassets in Resources */,
-				D62F639220C7F39800A44662 /* README.md in Resources */,
 				D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +297,7 @@
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
 				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
+				D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
 			);
@@ -314,7 +348,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
-				INFOPLIST_FILE = NowPlayingMessageExtension/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NowPlayingMessageExtension/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -335,7 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
-				INFOPLIST_FILE = NowPlayingMessageExtension/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/NowPlayingMessageExtension/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +506,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
-				INFOPLIST_FILE = "Now Playing/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Now Playing/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -492,7 +526,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
-				INFOPLIST_FILE = "Now Playing/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Now Playing/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

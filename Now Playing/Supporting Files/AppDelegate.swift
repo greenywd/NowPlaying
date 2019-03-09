@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
 
 	
-	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Swift.Void) {
+	func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
 		handleShortcut(shortcutItem)
 	}
 	
@@ -83,9 +83,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		guard let actionType = ShortcutIdentifier(rawValue: item.type) else {
 			return
 		}
+        print(actionType)
 		switch (actionType) {
 		case .ShareSong:
-			NotificationCenter.default.post(name: .shareSong, object: nil)
+            (window?.rootViewController!.childViewControllers.first?.childViewControllers.first as? NowPlayingViewController)?.share()
 
 		case .ShareAlbum:
 			print("Share album")
