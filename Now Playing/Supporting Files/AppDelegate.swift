@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print(actionType)
 		switch (actionType) {
 		case .ShareSong:
-            (window?.rootViewController!.childViewControllers.first?.childViewControllers.first as? NowPlayingViewController)?.share()
+            (window?.rootViewController!.children.first?.children.first as? NowPlayingViewController)?.share()
 
 		case .ShareAlbum:
 			print("Share album")

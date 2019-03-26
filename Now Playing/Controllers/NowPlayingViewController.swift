@@ -87,7 +87,7 @@ class NowPlayingViewController: UIViewController {
     }
     
     // Updates the blur view with given style, useful for when preferences are changed.
-    func updateBlurEffectView(withStyle style: UIBlurEffectStyle) {
+    func updateBlurEffectView(withStyle style: UIBlurEffect.Style) {
         DispatchQueue.main.async {
             self.blurView?.tag = 10
             
@@ -159,9 +159,9 @@ class NowPlayingViewController: UIViewController {
     }
     
     @objc func openApplicationSettings() {
-        if let url = URL(string:UIApplicationOpenSettingsURLString) {
+        if let url = URL(string:UIApplication.openSettingsURLString) {
             if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             }
         }
     }
@@ -186,7 +186,7 @@ class NowPlayingViewController: UIViewController {
         
         // Prepare and present our share sheet.
         activityViewController?.popoverPresentationController?.sourceView = self.artworkView
-        activityViewController?.excludedActivityTypes = [UIActivityType.airDrop, UIActivityType.saveToCameraRoll]
+        activityViewController?.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
         
         self.present(activityViewController!, animated: true, completion: nil)
     }
@@ -199,4 +199,9 @@ class NowPlayingViewController: UIViewController {
             return .default
         }
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
