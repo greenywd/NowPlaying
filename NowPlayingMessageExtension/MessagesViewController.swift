@@ -11,13 +11,7 @@ import Messages
 import MediaPlayer
 
 class MessagesViewController: MSMessagesAppViewController {
-	
-	struct Song {
-		static var title: String = "Unknown Title"
-		static var albumTitle: String = "Unknown Album"
-		static var artist: String = "Unknown Artist"
-		static var artwork: UIImage?
-	}
+	let nowPlaying = NowPlaying()
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +27,16 @@ class MessagesViewController: MSMessagesAppViewController {
 	}
 	
 	private func composeMessage(isSharingAlbum: Bool) {
-		getNowPlayingInfo()
+		let song = nowPlaying.getNowPlayingInfo()
 		
 		let conversation = activeConversation
 		let session = conversation?.selectedMessage?.session ?? MSSession()
 		
 		let layout = MSMessageTemplateLayout()
-		layout.image = Song.artwork
+		layout.image = song.artwork
 		layout.imageTitle =  (isSharingAlbum == true) ? "Now Playing Album:" : "Now Playing Song:"
-        layout.caption = (isSharingAlbum == true) ? Song.albumTitle : Song.title
-		layout.subcaption = Song.artist
+        layout.caption = (isSharingAlbum == true) ? song.albumTitle : song.title
+		layout.subcaption = song.artist
 		
 		let message = MSMessage(session: session)
 		message.layout = layout
@@ -50,16 +44,7 @@ class MessagesViewController: MSMessagesAppViewController {
 		
 		conversation?.insert(message)
 	}
-	
-	func getNowPlayingInfo() {
-		let systemMusicPlayer = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-		
-		Song.title = systemMusicPlayer?.title ?? "Unknown Title"
-		Song.artist = systemMusicPlayer?.artist ?? systemMusicPlayer?.albumArtist ?? "Unknown Artist"
-		Song.albumTitle = systemMusicPlayer?.albumTitle ?? "Unknown Album"
-		Song.artwork = systemMusicPlayer?.artwork?.image(at: (systemMusicPlayer?.artwork?.bounds.size)!) ?? nil
-	}
-	
+
     // MARK: - Conversation Handling
     
     override func willBecomeActive(with conversation: MSConversation) {
