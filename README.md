@@ -13,6 +13,8 @@ Please look at the [TODO](https://github.com/greenywd/NowPlaying/search?q=TODO&u
 - [ ] Resize image when sharing - 1280x1280 artwork is probably a little excessive and is quite large when sharing in Messages.
 - [ ] Add a widget/message extension for ease of access
 - [ ] Test when a song doesn't have proper tagging (i.e missing tag will probably show as 'nil' or not be added at all instead of 'Unknown Artist' or similar).
+- [ ] Spotify support
+- [ ] Think of a better name
 
 ### Screenshots
 #### App (Unfinished UI)
