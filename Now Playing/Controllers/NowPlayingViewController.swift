@@ -176,7 +176,7 @@ class NowPlayingViewController: UIViewController {
         
         var activityViewController: UIActivityViewController?
         
-        if let currentSong = sender as? NowPlaying.Song {
+        if let currentSong = sender as? Song {
             activityViewController = UIActivityViewController(activityItems: nowPlaying.share(song: currentSong), applicationActivities: nil)
         } else {
             activityViewController = UIActivityViewController(activityItems: nowPlaying.share(), applicationActivities: nil)

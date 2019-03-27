@@ -8,17 +8,8 @@
 
 import Foundation
 import MediaPlayer
-import UIKit
 
 struct NowPlaying {
-    
-    // Struct created with static vars to store the contents of the current song - may be expanded in the future.
-    struct Song {
-        var title: String? = "Unknown Title"
-        var albumTitle: String? = "Unknown Artist"
-        var artist: String? = "Unknown Album"
-        var artwork: UIImage?
-    }
     
     init() {
         MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
