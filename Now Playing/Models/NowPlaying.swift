@@ -18,19 +18,15 @@ struct NowPlaying {
     // Helper function to get the data from the Now Playing item and update the Song struct.
     func getNowPlayingInfo() -> Song {
         let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-        
-        return Song(title: nowPlaying?.title,
-                    albumTitle: nowPlaying?.albumTitle,
-                    artist: nowPlaying?.artist ?? nowPlaying?.albumArtist,
-                    artwork: nowPlaying?.artwork?.image(at: (nowPlaying?.artwork?.bounds.size)!))
+        return Song(from: nowPlaying!)
     }
     
-    func share(song: Song? = nil) -> [Any] {
+    func shareContent(song: Song) -> [Any] {
         
-        let np: Song = song ?? self.getNowPlayingInfo()
+        let np: Song = self.getNowPlayingInfo()
         
         var toShare = [Any]()
-        let text = "Now Playing - " + (np.title ?? "Unknown Title") + " by " + (np.artist ?? "Unknown Artist")
+        let text = "Now Playing - " + np.title + " by " + np.artist
         
         toShare.append(text)
         // If the user wants to share artwork, lets prepare it to be shared.

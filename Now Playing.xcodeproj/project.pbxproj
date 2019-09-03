@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D6218367221421B800F4BA6B /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6218366221421B800F4BA6B /* Spotify.swift */; };
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
 		D6323E7420CBF871007728F9 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6323E7320CBF871007728F9 /* Messages.framework */; };
@@ -19,8 +18,12 @@
 		D65335DC224ADBE700D97592 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642677A2213F01B00259034 /* NowPlaying.swift */; };
 		D65335DE224B031100D97592 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65335DD224B031100D97592 /* Song.swift */; };
 		D65335DF224B031400D97592 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65335DD224B031100D97592 /* Song.swift */; };
-		D65335E0224B034800D97592 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6218366221421B800F4BA6B /* Spotify.swift */; };
 		D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */; };
+		D6DD5277231E074F00C43F51 /* PlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD5276231E074F00C43F51 /* PlayingView.swift */; };
+		D6DD5279231E07C700C43F51 /* TabbedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD5278231E07C700C43F51 /* TabbedView.swift */; };
+		D6DD527B231E085200C43F51 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD527A231E085200C43F51 /* SettingsView.swift */; };
+		D6DD527D231E0ABF00C43F51 /* SwiftUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD527C231E0ABF00C43F51 /* SwiftUIHelper.swift */; };
+		D6DD52A2231E0CA000C43F51 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6DD52A1231E0CA000C43F51 /* SceneDelegate.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
@@ -53,7 +56,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		D6218366221421B800F4BA6B /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
 		D62F638F20C7E70800A44662 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		D62F639120C7F39800A44662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.markdown; };
 		D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +68,11 @@
 		D65335DD224B031100D97592 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D698450B20D5E4AA0065D9D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingTabBarController.swift; sourceTree = "<group>"; };
+		D6DD5276231E074F00C43F51 /* PlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayingView.swift; sourceTree = "<group>"; };
+		D6DD5278231E07C700C43F51 /* TabbedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbedView.swift; sourceTree = "<group>"; };
+		D6DD527A231E085200C43F51 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		D6DD527C231E0ABF00C43F51 /* SwiftUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIHelper.swift; sourceTree = "<group>"; };
+		D6DD52A1231E0CA000C43F51 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D6F8DAAA222A150400EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6F8DAAF222A165E00EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,12 +121,23 @@
 			path = NowPlayingMessageExtension;
 			sourceTree = "<group>";
 		};
+		D6DD5275231E074300C43F51 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D6DD5276231E074F00C43F51 /* PlayingView.swift */,
+				D6DD5278231E07C700C43F51 /* TabbedView.swift */,
+				D6DD527A231E085200C43F51 /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		D6F8DAA5222A13E400EA1F08 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
 				D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */,
+				D6DD527C231E0ABF00C43F51 /* SwiftUIHelper.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -128,7 +146,6 @@
 			isa = PBXGroup;
 			children = (
 				D642677A2213F01B00259034 /* NowPlaying.swift */,
-				D6218366221421B800F4BA6B /* Spotify.swift */,
 				D65335DD224B031100D97592 /* Song.swift */,
 			);
 			path = Models;
@@ -142,6 +159,7 @@
 				D6FE38A620C629D9009BB662 /* LaunchScreen.storyboard */,
 				D62F638F20C7E70800A44662 /* Extensions.swift */,
 				D6F8DAAF222A165E00EA1F08 /* Info.plist */,
+				D6DD52A1231E0CA000C43F51 /* SceneDelegate.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -178,6 +196,7 @@
 		D6FE389C20C629D7009BB662 /* Now Playing */ = {
 			isa = PBXGroup;
 			children = (
+				D6DD5275231E074300C43F51 /* Views */,
 				D6F8DAA7222A143200EA1F08 /* Supporting Files */,
 				D6F8DAA6222A140300EA1F08 /* Models */,
 				D6F8DAA5222A13E400EA1F08 /* Controllers */,
@@ -293,7 +312,6 @@
 			files = (
 				D65335DF224B031400D97592 /* Song.swift in Sources */,
 				D6323E7720CBF871007728F9 /* MessagesViewController.swift in Sources */,
-				D65335E0224B034800D97592 /* Spotify.swift in Sources */,
 				D65335DC224ADBE700D97592 /* NowPlaying.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,14 +320,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D6218367221421B800F4BA6B /* Spotify.swift in Sources */,
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
 				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
+				D6DD5277231E074F00C43F51 /* PlayingView.swift in Sources */,
 				D65335DE224B031100D97592 /* Song.swift in Sources */,
+				D6DD527B231E085200C43F51 /* SettingsView.swift in Sources */,
 				D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
+				D6DD5279231E07C700C43F51 /* TabbedView.swift in Sources */,
+				D6DD527D231E0ABF00C43F51 /* SwiftUIHelper.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
+				D6DD52A2231E0CA000C43F51 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
 				INFOPLIST_FILE = "$(SRCROOT)/NowPlayingMessageExtension/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -381,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
 				INFOPLIST_FILE = "$(SRCROOT)/NowPlayingMessageExtension/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -447,7 +469,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -502,7 +524,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -519,7 +541,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
 				INFOPLIST_FILE = "$(SRCROOT)/Now Playing/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -539,7 +561,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F33EN56G35;
 				INFOPLIST_FILE = "$(SRCROOT)/Now Playing/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

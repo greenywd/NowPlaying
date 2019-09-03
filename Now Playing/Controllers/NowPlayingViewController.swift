@@ -81,7 +81,7 @@ class NowPlayingViewController: UIViewController {
         // NotificationCenter.default.addObserver(self, selector: #selector(share(_:)), name: .NowPlayingShareSong, object: nil)
         NotificationCenter.default.addObserver(forName: .NowPlayingShareSong, object: nil, queue: .main , using: {(note) in
             print("Received notification from \(note)")
-            self.share(self.nowPlaying.getNowPlayingInfo())
+            self.share()
         })
         completion()
     }
@@ -120,22 +120,8 @@ class NowPlayingViewController: UIViewController {
             }
         } else if (notification.name.rawValue == "NowPlayingInitialSetup") {
             artworkView.isHidden = false
-            artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share(_:))))
+            artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share)))
             titleLabel.isHidden = false
-        } else if (notification.name.rawValue == "NSUserDefaultsDidChangeNotification") {
-            if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-                updateBlurEffectView(withStyle: .dark)
-                artistLabel.textColor = .lightText
-                titleLabel.textColor = .lightText
-                self.tabBarController?.tabBar.barStyle = .black
-                self.navigationController?.navigationBar.barStyle = .blackTranslucent
-            } else {
-                updateBlurEffectView(withStyle: .light)
-                artistLabel.textColor = .darkText
-                titleLabel.textColor = .darkText
-                self.tabBarController?.tabBar.barStyle = .default
-                self.navigationController?.navigationBar.barStyle = .default
-            }
         } else if (notification.name.rawValue == "MPMusicPlayerControllerNowPlayingItemDidChangeNotification") {
             let np = nowPlaying.getNowPlayingInfo()
             let playbackState = MPMusicPlayerController.systemMusicPlayer.playbackState
@@ -169,18 +155,15 @@ class NowPlayingViewController: UIViewController {
     // TODO: Add "Share Album" option somewhere - ideally have both Song and Album options present to the user.
     // Let's share something!
     
-    @objc func share(_ sender: Any? = nil) {
+    @objc func share() {
         
         // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
         tabBarController?.selectedIndex = 0
         
         var activityViewController: UIActivityViewController?
         
-        if let currentSong = sender as? Song {
-            activityViewController = UIActivityViewController(activityItems: nowPlaying.share(song: currentSong), applicationActivities: nil)
-        } else {
-            activityViewController = UIActivityViewController(activityItems: nowPlaying.share(), applicationActivities: nil)
-        }
+        activityViewController = UIActivityViewController(activityItems: nowPlaying.shareContent(song: nowPlaying.getNowPlayingInfo()), applicationActivities: nil)
+
         
         // https://stackoverflow.com/a/35931947
         
@@ -189,15 +172,6 @@ class NowPlayingViewController: UIViewController {
         activityViewController?.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
         
         self.present(activityViewController!, animated: true, completion: nil)
-    }
-    
-    // TODO: Update status bar colour on appearance change.
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-            return .lightContent
-        } else {
-            return .default
-        }
     }
 }
 
