@@ -128,36 +128,52 @@ class NowPlayingViewController: UIViewController {
     // Let's share something!
     
     @objc func share() {
-        let group = DispatchGroup()
-        var shareURL = [Any]()
+        // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
+        self.tabBarController?.selectedIndex = 0
         
-        group.enter()
-        Networking.search(using: Music.getNowPlayingInfo()) { (url) in
-            if let url = url {
-                shareURL.append(url)
+        var shareContent = [Any]()
+        let actionSheet = UIAlertController(title: "How would you like to share?", message: nil, preferredStyle: .actionSheet)
+        actionSheet.addAction(UIAlertAction(title: "Apple Music URL", style: .default, handler: { _ in
+            let group = DispatchGroup()
+            
+            group.enter()
+            Networking.search(using: Music.getNowPlayingInfo()) { (url) in
+                if let url = url {
+                    shareContent.append(url)
+                }
+                group.leave()
             }
-            group.leave()
-        }
-        
-        group.notify(queue: .main) {
-            // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
-            self.tabBarController?.selectedIndex = 0
             
-            let activityViewController = UIActivityViewController(activityItems: shareURL, applicationActivities: nil)
-            //activityViewController = UIActivityViewController(activityItems: nil, applicationActivities: nil)
+            group.notify(queue: .main) {
+                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
+            let song = Music.getNowPlayingInfo()
+            shareContent.append("\(song.title) by \(song.artist)")
             
-            // https://stackoverflow.com/a/35931947
+            if UserDefaults.standard.bool(forKey: "artwork_enabled") {
+                if let artwork = song.artwork {
+                    shareContent.append(artwork)
+                }
+            }
             
-            // Prepare and present our share sheet.
-            activityViewController.popoverPresentationController?.sourceView = self.artworkView
+            let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
             
             self.present(activityViewController, animated: true, completion: nil)
-        }
+        }))
+        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        self.present(actionSheet, animated: true, completion: nil)
     }
 }
 
 // Helper function inserted by Swift 4.2 migrator.
 fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }
