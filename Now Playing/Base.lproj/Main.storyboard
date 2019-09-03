@@ -12,7 +12,7 @@
         <scene sceneID="eXG-b5-qiV">
             <objects>
                 <navigationController id="Myk-ia-Yii" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Now Playing" image="music.house.fill" id="kR5-Ad-ZlX"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="music.house.fill" catalog="system" id="kR5-Ad-ZlX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="UQP-lp-Tdg">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -82,7 +82,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" id="xdu-50-Tve"/>
+                    <tabBarItem key="tabBarItem" title="Now Playing" image="music.house.fill" id="xdu-50-Tve"/>
                     <navigationItem key="navigationItem" title="Now Playing" id="XtX-ex-UJb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -239,7 +239,7 @@
         <scene sceneID="2cc-xW-g30">
             <objects>
                 <navigationController id="sfM-SI-eCL" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Settings" image="gear" id="HCo-dz-iFH"/>
+                    <tabBarItem key="tabBarItem" title="Settings" image="gear" catalog="system" id="HCo-dz-iFH"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="5aR-uV-EbQ">
                         <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -254,7 +254,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gear" width="16" height="16"/>
+        <image name="gear" catalog="system" width="64" height="60"/>
         <image name="music.house.fill" width="16" height="16"/>
+        <image name="music.house.fill" catalog="system" width="64" height="52"/>
     </resources>
 </document>
