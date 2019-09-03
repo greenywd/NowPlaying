@@ -11,8 +11,6 @@ import Messages
 import MediaPlayer
 
 class MessagesViewController: MSMessagesAppViewController {
-	let nowPlaying = NowPlaying()
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,7 +25,7 @@ class MessagesViewController: MSMessagesAppViewController {
 	}
 	
 	private func composeMessage(isSharingAlbum: Bool) {
-		let song = nowPlaying.getNowPlayingInfo()
+		let song = Music.getNowPlayingInfo()
 		
 		let conversation = activeConversation
 		let session = conversation?.selectedMessage?.session ?? MSSession()

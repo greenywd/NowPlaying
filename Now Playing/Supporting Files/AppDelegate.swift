@@ -23,7 +23,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
 		
 		let userDefaultsDefaults = [
-			"dark_enabled" : (true ? 1 : 0),
 			"artwork_enabled" : (true ? 1 : 0),
 			"share_text_conf" : "Now Playing - %title% by %artist%"
 			] as [String : Any]
@@ -43,10 +42,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		if launchOptions?[.shortcutItem] != nil {
 			handleShortcut(launchOptions?[.shortcutItem] as! UIApplicationShortcutItem)
-			print("yeet")
 		}
-		
-		print("didFinishLaunchingWithOptions")
+        
+        if MPMediaLibrary.authorizationStatus() == .authorized {
+            MPMusicPlayerController.systemMusicPlayer.beginGeneratingPlaybackNotifications()
+        }
+
 		return true
 	}
 

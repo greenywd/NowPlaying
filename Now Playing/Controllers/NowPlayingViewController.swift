@@ -11,9 +11,6 @@ import MediaPlayer
 
 class NowPlayingViewController: UIViewController {
     
-    // MARK: - Class Properties
-    let nowPlaying = NowPlaying()
-    
     // Instances used in created the background blur.
     var backgroundArtworkImage: UIImage?
     
@@ -31,9 +28,7 @@ class NowPlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nowPlaying.registerSettingsBundle()
-        
-        setupNotificationObservers(completion: {() in
+        setupNotificationObservers(completion: {
             print("setupNotificationObservers(completion: )")
             if (MPMediaLibrary.authorizationStatus() == .authorized) {
                 print(MPMediaLibrary.authorizationStatus())
@@ -66,14 +61,10 @@ class NowPlayingViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-    }
-    
     // MARK: - Class Functions (Custom)
     
     // Notification Center Observers to handle when the Now Playing Item changes and when we trigger a 3D Touch action from the Home Screen.
-    func setupNotificationObservers(completion: () -> Void) {
+    func setupNotificationObservers(completion: () -> ()) {
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI(_:)), name: .MPMusicPlayerControllerNowPlayingItemDidChange, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI(_:)), name: UserDefaults.didChangeNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateUI(_:)), name: .MPMediaLibraryUnauthorized, object: nil)
@@ -84,25 +75,6 @@ class NowPlayingViewController: UIViewController {
             self.share()
         })
         completion()
-    }
-    
-    // Updates the blur view with given style, useful for when preferences are changed.
-    func updateBlurEffectView(withStyle style: UIBlurEffect.Style) {
-        DispatchQueue.main.async {
-            self.blurView?.tag = 10
-            
-            if let blur = self.view.viewWithTag(10) {
-                blur.removeFromSuperview()
-            }
-            
-            let blurEffect = UIBlurEffect(style: style)
-            self.blurView?.effect = blurEffect
-            self.blurView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            
-            if let blur = self.blurView {
-                self.view.insertSubview(blur, at: 0)
-            }
-        }
     }
     
     @objc func updateUI(_ sender: NSNotification?) {
@@ -122,22 +94,8 @@ class NowPlayingViewController: UIViewController {
             artworkView.isHidden = false
             artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share)))
             titleLabel.isHidden = false
-        } else if (notification.name.rawValue == "NSUserDefaultsDidChangeNotification") {
-            if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-                updateBlurEffectView(withStyle: .dark)
-                artistLabel.textColor = .lightText
-                titleLabel.textColor = .lightText
-                self.tabBarController?.tabBar.barStyle = .black
-                self.navigationController?.navigationBar.barStyle = .blackTranslucent
-            } else {
-                updateBlurEffectView(withStyle: .light)
-                artistLabel.textColor = .darkText
-                titleLabel.textColor = .darkText
-                self.tabBarController?.tabBar.barStyle = .default
-                self.navigationController?.navigationBar.barStyle = .default
-            }
         } else if (notification.name.rawValue == "MPMusicPlayerControllerNowPlayingItemDidChangeNotification") {
-            let np = nowPlaying.getNowPlayingInfo()
+            let np = Music.getNowPlayingInfo()
             let playbackState = MPMusicPlayerController.systemMusicPlayer.playbackState
             
             artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : np.artist
@@ -174,7 +132,7 @@ class NowPlayingViewController: UIViewController {
         var shareURL = [Any]()
         
         group.enter()
-        Networking.search(using: nowPlaying.getNowPlayingInfo()) { (url) in
+        Networking.search(using: Music.getNowPlayingInfo()) { (url) in
             if let url = url {
                 shareURL.append(url)
             }
@@ -195,15 +153,6 @@ class NowPlayingViewController: UIViewController {
             activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
             
             self.present(activityViewController, animated: true, completion: nil)
-        }
-    }
-    
-    // TODO: Update status bar colour on appearance change.
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
-            return .lightContent
-        } else {
-            return .default
         }
     }
 }

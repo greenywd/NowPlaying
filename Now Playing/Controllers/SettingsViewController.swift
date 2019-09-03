@@ -9,23 +9,7 @@
 import UIKit
 
 class SettingsViewController: UITableViewController, UITextFieldDelegate {
-    
-    enum Theme: Int {
-        case light = 0
-        case dark = 1
-    }
-    
-    private var currentTheme: Theme {
-        return getCurrentTheme()
-    }
-    
     private let userDefaults = UserDefaults.standard
-    
-    @IBOutlet var darkSwitch: UISwitch!
-    @IBAction func darkSwitchChanged(_ sender: UISwitch) {
-        userDefaults.set(sender.isOn, forKey: "dark_enabled")
-        updateAppearance()
-    }
     
     @IBOutlet var artworkSwitch: UISwitch!
     @IBAction func artworkSwitchChanged(_ sender: UISwitch) {
@@ -47,8 +31,7 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        updateAppearance()
+
         setPrefStates()
     }
     
@@ -60,21 +43,9 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
-    
-    // Set dark mode on/off
-    func updateAppearance() {
-        if currentTheme == .light {
-            self.navigationController?.navigationBar.barStyle = .default
-            self.tabBarController?.tabBar.barStyle = .default
-        } else {
-            self.navigationController?.navigationBar.barStyle = .black
-            self.tabBarController?.tabBar.barStyle = .black
-        }
-    }
 
     // Set the UI elements to reflect the user's current preferences.
     func setPrefStates() {
-        darkSwitch.isOn = userDefaults.bool(forKey: "dark_enabled")
         artworkSwitch.isOn = userDefaults.bool(forKey: "artwork_enabled")
 
         // TODO: Implement custom share text based on this key
@@ -83,10 +54,5 @@ class SettingsViewController: UITableViewController, UITextFieldDelegate {
     
     @objc func dismissKeyboard(){
         view.endEditing(true)
-    }
-    
-    func getCurrentTheme () -> Theme {
-        let theme = userDefaults.bool(forKey: "dark_enabled")
-        return theme ? .dark : .light
     }
 }
