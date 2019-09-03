@@ -82,7 +82,6 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Now Playing" image="music.house.fill" id="xdu-50-Tve"/>
                     <navigationItem key="navigationItem" title="Now Playing" id="XtX-ex-UJb"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -255,7 +254,6 @@
     </scenes>
     <resources>
         <image name="gear" catalog="system" width="64" height="60"/>
-        <image name="music.house.fill" width="16" height="16"/>
         <image name="music.house.fill" catalog="system" width="64" height="52"/>
     </resources>
 </document>

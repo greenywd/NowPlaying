@@ -27,6 +27,13 @@ class NowPlayingViewController: UIViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        artworkView.layer.shadowColor = UIColor.black.cgColor
+        artworkView.layer.shadowOpacity = 1
+        artworkView.layer.shadowOffset = CGSize.zero
+        artworkView.layer.shadowRadius = 20
+        artworkView.layer.shadowPath = UIBezierPath(roundedRect: artworkView.bounds, cornerRadius: 10).cgPath
+        artworkView.layer.cornerRadius = 20
         
         setupNotificationObservers(completion: {
             print("setupNotificationObservers(completion: )")
@@ -131,6 +138,10 @@ class NowPlayingViewController: UIViewController {
         // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
         self.tabBarController?.selectedIndex = 0
         
+        UIView.animate(withDuration: 0.33) {
+            self.artworkView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        }
+        
         var shareContent = [Any]()
         let actionSheet = UIAlertController(title: "How would you like to share?", message: nil, preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Apple Music URL", style: .default, handler: { _ in
@@ -149,6 +160,9 @@ class NowPlayingViewController: UIViewController {
                 activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
                 
                 self.present(activityViewController, animated: true, completion: nil)
+                UIView.animate(withDuration: 0.33) {
+                    self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                }
             }
         }))
         actionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
@@ -165,9 +179,15 @@ class NowPlayingViewController: UIViewController {
             activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
             
             self.present(activityViewController, animated: true, completion: nil)
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
         }))
         actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
             self.dismiss(animated: true, completion: nil)
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
         }))
         self.present(actionSheet, animated: true, completion: nil)
     }
