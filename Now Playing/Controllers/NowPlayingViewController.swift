@@ -81,7 +81,7 @@ class NowPlayingViewController: UIViewController {
         // NotificationCenter.default.addObserver(self, selector: #selector(share(_:)), name: .NowPlayingShareSong, object: nil)
         NotificationCenter.default.addObserver(forName: .NowPlayingShareSong, object: nil, queue: .main , using: {(note) in
             print("Received notification from \(note)")
-            self.share(self.nowPlaying.getNowPlayingInfo())
+            self.share()
         })
         completion()
     }
@@ -120,7 +120,7 @@ class NowPlayingViewController: UIViewController {
             }
         } else if (notification.name.rawValue == "NowPlayingInitialSetup") {
             artworkView.isHidden = false
-            artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share(_:))))
+            artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share)))
             titleLabel.isHidden = false
         } else if (notification.name.rawValue == "NSUserDefaultsDidChangeNotification") {
             if (UserDefaults.standard.bool(forKey: "dark_enabled")) {
@@ -169,26 +169,33 @@ class NowPlayingViewController: UIViewController {
     // TODO: Add "Share Album" option somewhere - ideally have both Song and Album options present to the user.
     // Let's share something!
     
-    @objc func share(_ sender: Any? = nil) {
+    @objc func share() {
+        let group = DispatchGroup()
+        var shareURL = [Any]()
         
-        // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
-        tabBarController?.selectedIndex = 0
-        
-        var activityViewController: UIActivityViewController?
-        
-        if let currentSong = sender as? Song {
-            activityViewController = UIActivityViewController(activityItems: nowPlaying.share(song: currentSong), applicationActivities: nil)
-        } else {
-            activityViewController = UIActivityViewController(activityItems: nowPlaying.share(), applicationActivities: nil)
+        group.enter()
+        Networking.search(using: nowPlaying.getNowPlayingInfo()) { (url) in
+            if let url = url {
+                shareURL.append(url)
+            }
+            group.leave()
         }
         
-        // https://stackoverflow.com/a/35931947
-        
-        // Prepare and present our share sheet.
-        activityViewController?.popoverPresentationController?.sourceView = self.artworkView
-        activityViewController?.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
-        
-        self.present(activityViewController!, animated: true, completion: nil)
+        group.notify(queue: .main) {
+            // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
+            self.tabBarController?.selectedIndex = 0
+            
+            let activityViewController = UIActivityViewController(activityItems: shareURL, applicationActivities: nil)
+            //activityViewController = UIActivityViewController(activityItems: nil, applicationActivities: nil)
+            
+            // https://stackoverflow.com/a/35931947
+            
+            // Prepare and present our share sheet.
+            activityViewController.popoverPresentationController?.sourceView = self.artworkView
+            activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
+            
+            self.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     // TODO: Update status bar colour on appearance change.

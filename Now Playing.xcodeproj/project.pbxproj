@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D60ACCCB231E3A3700C02D94 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66722231E33C000F8C8C5 /* Networking.swift */; };
+		D60ACCCC231E3A4700C02D94 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66724231E34B900F8C8C5 /* APIKey.swift */; };
+		D60ACCCD231E3A6700C02D94 /* AppleMusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */; };
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
 		D6323E7420CBF871007728F9 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6323E7320CBF871007728F9 /* Messages.framework */; };
@@ -296,9 +299,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D60ACCCD231E3A6700C02D94 /* AppleMusicData.swift in Sources */,
 				D65335DF224B031400D97592 /* Song.swift in Sources */,
 				D6323E7720CBF871007728F9 /* MessagesViewController.swift in Sources */,
 				D65335DC224ADBE700D97592 /* NowPlaying.swift in Sources */,
+				D60ACCCB231E3A3700C02D94 /* Networking.swift in Sources */,
+				D60ACCCC231E3A4700C02D94 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

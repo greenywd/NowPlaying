@@ -15,10 +15,14 @@ struct AppleMusicData : Decodable {
         var songs: Songs
         
         struct Songs : Decodable {
-            var data: Data
+            var data: [Data]
             
             struct Data : Decodable {
-                var url: String
+                var attributes: Attributes
+                
+                struct Attributes : Decodable {
+                    var url: String
+                }
             }
         }
     }

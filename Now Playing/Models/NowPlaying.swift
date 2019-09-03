@@ -18,30 +18,27 @@ struct NowPlaying {
     // Helper function to get the data from the Now Playing item and update the Song struct.
     func getNowPlayingInfo() -> Song {
         let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-
+        
         return Song(from: nowPlaying!)
     }
     
-    func shareContente() -> [Any] {
-        
+    func shareAppleMusic(completion: @escaping (String?) -> ()) {
+        let group = DispatchGroup()
+        var appleMusicURL: String?
         let np = getNowPlayingInfo()
-        
-        let networking = Netw
-        
-        var toShare = [Any]()
-        let text = ""
-        
-        toShare.append(text)
-        // If the user wants to share artwork, lets prepare it to be shared.
-        if UserDefaults.standard.bool(forKey: "artwork_enabled") {
-            if let artwork = np.artwork {
-                toShare.append(artwork)
-                // FIXME: Do we need to resize images?
-                // toShare.append(image.resizeImage(image: image, newWidth: 600))
+        group.enter()
+        Networking.search(using: np) { (url) in
+            if let url = url {
+                appleMusicURL = url
             }
+            group.leave()
         }
         
-        return toShare
+        group.notify(queue: .main) {
+            if let url = appleMusicURL {
+                completion(url)
+            }
+        }
     }
     
     // https://gist.github.com/abhimuralidharan/3bcd28041f0bd81053c2f92f384ca693#file-settingsobserver-swift
