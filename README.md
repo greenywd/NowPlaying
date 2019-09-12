@@ -18,7 +18,7 @@ Please look at the [TODO](https://github.com/greenywd/NowPlaying/search?q=TODO&u
 
 ### Screenshots
 #### App (Unfinished UI)
-<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_5050.png" width="375" height="812">
+<img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/screenshot-app-nowplaying.jpeg" width="375" height="812">
 
 #### iMessage Extension
 <img src="https://raw.githubusercontent.com/greenywd/NowPlaying/master/IMG_4962.jpeg" width="350" height="451">
