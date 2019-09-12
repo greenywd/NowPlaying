@@ -143,12 +143,13 @@ class NowPlayingViewController: UIViewController {
         }
         
         var shareContent = [Any]()
-        let actionSheet = UIAlertController(title: "How would you like to share?", message: nil, preferredStyle: .actionSheet)
-        actionSheet.addAction(UIAlertAction(title: "Apple Music URL", style: .default, handler: { _ in
+
+        let shareActionSheet = UIAlertController(title: "How would you like to share?", message: nil, preferredStyle: .actionSheet)
+        shareActionSheet.addAction(UIAlertAction(title: "Apple Music URL - Song", style: .default, handler: { _ in
             let group = DispatchGroup()
             
             group.enter()
-            Networking.search(using: Music.getNowPlayingInfo()) { (url) in
+            Networking.search(using: Music.getNowPlayingInfo(), for: .song) { (url) in
                 if let url = url {
                     shareContent.append(url)
                 }
@@ -160,12 +161,35 @@ class NowPlayingViewController: UIViewController {
                 activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
                 
                 self.present(activityViewController, animated: true, completion: nil)
-                UIView.animate(withDuration: 0.33) {
-                    self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                }
+            }
+            
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
+        shareActionSheet.addAction(UIAlertAction(title: "Apple Music URL - Album", style: .default, handler: { _ in
+            let group = DispatchGroup()
+            
+            group.enter()
+            Networking.search(using: Music.getNowPlayingInfo(), for: .album) { (url) in
+                if let url = url {
+                    shareContent.append(url)
+                }
+                group.leave()
+            }
+            
+            group.notify(queue: .main) {
+                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        }))
+        shareActionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
             let song = Music.getNowPlayingInfo()
             shareContent.append("\(song.title) by \(song.artist)")
             
@@ -183,13 +207,13 @@ class NowPlayingViewController: UIViewController {
                 self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }
         }))
-        actionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
+        shareActionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
             self.dismiss(animated: true, completion: nil)
             UIView.animate(withDuration: 0.33) {
                 self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }
         }))
-        self.present(actionSheet, animated: true, completion: nil)
+        self.present(shareActionSheet, animated: true, completion: nil)
     }
 }
 
