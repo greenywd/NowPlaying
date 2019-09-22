@@ -25,6 +25,9 @@
 		D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66722231E33C000F8C8C5 /* Networking.swift */; };
 		D6B66725231E34B900F8C8C5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66724231E34B900F8C8C5 /* APIKey.swift */; };
 		D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */; };
+		D6FA5D702337695000454769 /* Spotify.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA5D6F2337695000454769 /* Spotify.swift */; };
+		D6FA5D7223376BEE00454769 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA5D7123376BEE00454769 /* String+Extensions.swift */; };
+		D6FA5D7423376C5200454769 /* SpotifyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FA5D7323376C5200454769 /* SpotifyData.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
 		D6FE38A320C629D7009BB662 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D6FE38A120C629D7009BB662 /* Main.storyboard */; };
@@ -74,6 +77,9 @@
 		D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicData.swift; sourceTree = "<group>"; };
 		D6F8DAAA222A150400EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6F8DAAF222A165E00EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D6FA5D6F2337695000454769 /* Spotify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spotify.swift; sourceTree = "<group>"; };
+		D6FA5D7123376BEE00454769 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		D6FA5D7323376C5200454769 /* SpotifyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyData.swift; sourceTree = "<group>"; };
 		D6FE389A20C629D7009BB662 /* Now Playing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Now Playing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6FE389D20C629D7009BB662 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
@@ -138,6 +144,8 @@
 				D6B66722231E33C000F8C8C5 /* Networking.swift */,
 				D6B66724231E34B900F8C8C5 /* APIKey.swift */,
 				D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */,
+				D6FA5D6F2337695000454769 /* Spotify.swift */,
+				D6FA5D7323376C5200454769 /* SpotifyData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 				D6F8DAA6222A140300EA1F08 /* Models */,
 				D6F8DAA5222A13E400EA1F08 /* Controllers */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
+				D6FA5D7123376BEE00454769 /* String+Extensions.swift */,
 			);
 			path = "Now Playing";
 			sourceTree = "<group>";
@@ -316,11 +325,14 @@
 				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
 				D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */,
+				D6FA5D7223376BEE00454769 /* String+Extensions.swift in Sources */,
+				D6FA5D7423376C5200454769 /* SpotifyData.swift in Sources */,
 				D65335DE224B031100D97592 /* Song.swift in Sources */,
 				D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */,
 				D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
 				D6B66725231E34B900F8C8C5 /* APIKey.swift in Sources */,
+				D6FA5D702337695000454769 /* Spotify.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

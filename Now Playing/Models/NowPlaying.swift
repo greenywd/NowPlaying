@@ -12,9 +12,10 @@ import MediaPlayer
 struct Music {
     
     // Helper function to get the data from the Now Playing item and update the Song struct.
-    static func getNowPlayingInfo() -> Song {
-        let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
-        
-        return Song(from: nowPlaying!)
+    static func getNowPlayingInfo() -> Song? {
+        if let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem {
+            return Song(from: nowPlaying)
+        }
+        return nil
     }
 }

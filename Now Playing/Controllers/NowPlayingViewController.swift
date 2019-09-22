@@ -24,6 +24,8 @@ class NowPlayingViewController: UIViewController {
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
+    let spotify = Spotify(clientID: spotifyClientID, clientSecret: spotifyClientSecret)
+    
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,13 +107,13 @@ class NowPlayingViewController: UIViewController {
             let np = Music.getNowPlayingInfo()
             let playbackState = MPMusicPlayerController.systemMusicPlayer.playbackState
             
-            artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : np.artist
-            titleLabel.text = (playbackState == .stopped) ? "" : np.title
+            artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : np?.artist
+            titleLabel.text = (playbackState == .stopped) ? "" : np?.title
             
             if (playbackState == .stopped) {
                 artworkView.image = nil
             } else {
-                if let artwork = np.artwork {
+                if let artwork = np?.artwork {
                     artworkView.image = artwork
                     backgroundArtworkImage = artwork
                     // TODO: center this?
@@ -149,7 +151,7 @@ class NowPlayingViewController: UIViewController {
             let group = DispatchGroup()
             
             group.enter()
-            Networking.search(using: Music.getNowPlayingInfo(), for: .song) { (url) in
+            Networking.search(using: Music.getNowPlayingInfo()!, for: .song) { (url) in
                 if let url = url {
                     shareContent.append(url)
                 }
@@ -171,7 +173,7 @@ class NowPlayingViewController: UIViewController {
             let group = DispatchGroup()
             
             group.enter()
-            Networking.search(using: Music.getNowPlayingInfo(), for: .album) { (url) in
+            Networking.search(using: Music.getNowPlayingInfo()!, for: .album) { (url) in
                 if let url = url {
                     shareContent.append(url)
                 }
@@ -189,12 +191,35 @@ class NowPlayingViewController: UIViewController {
                 self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }
         }))
+        shareActionSheet.addAction(UIAlertAction(title: "Spotify URL - Song", style: .default, handler: { _ in
+            let group = DispatchGroup()
+            
+            group.enter()
+            self.spotify.search(using: Music.getNowPlayingInfo()!, for: .song) { (url) in
+                if let url = url {
+                    shareContent.append(url)
+                }
+                group.leave()
+            }
+            
+            group.notify(queue: .main) {
+                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        }))
+        
         shareActionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
             let song = Music.getNowPlayingInfo()
-            shareContent.append("\(song.title) by \(song.artist)")
+            shareContent.append("\(song?.title) by \(song?.artist)")
             
             if UserDefaults.standard.bool(forKey: "artwork_enabled") {
-                if let artwork = song.artwork {
+                if let artwork = song?.artwork {
                     shareContent.append(artwork)
                 }
             }
