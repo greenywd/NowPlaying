@@ -19,6 +19,7 @@ class Spotify {
         
         getToken { (token) in
             self.token = token
+            print(token)
         }
         
         print("Finished spotify class")
@@ -63,7 +64,7 @@ class Spotify {
         if (type == .song) {
             searchURL += "search?q=\(song.title) \(song.artist)&type=track"
         } else {
-            searchURL += "search?q=\(song.albumTitle) \(song.artist)&type=track"
+            searchURL += "search?q=\(song.albumTitle) \(song.artist)&type=album"
         }
         
         if let encoded = searchURL.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed), let encodedURL = URL(string: encoded) {
@@ -89,9 +90,13 @@ class Spotify {
             }
             
             do {
-                let results = try JSONDecoder().decode(SpotifySearch.self, from: responseData)
-                completion(results.tracks.items.first?.externalUrls.spotify)
-                
+                if (type == .song) {
+                    let results = try JSONDecoder().decode(SpotifySearchTracks.self, from: responseData)
+                    completion(results.tracks.items.first?.externalUrls.spotify)
+                } else if (type == .album) {
+                    let results = try JSONDecoder().decode(SpotifySearchAlbums.self, from: responseData)
+                    completion(results.albums.items.first?.externalUrls.spotify)
+                }
             } catch {
                 print(error, error.localizedDescription)
             }

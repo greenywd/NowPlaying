@@ -213,6 +213,28 @@ class NowPlayingViewController: UIViewController {
                 self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }
         }))
+        shareActionSheet.addAction(UIAlertAction(title: "Spotify URL - Album", style: .default, handler: { _ in
+            let group = DispatchGroup()
+            
+            group.enter()
+            self.spotify.search(using: Music.getNowPlayingInfo()!, for: .album) { (url) in
+                if let url = url {
+                    shareContent.append(url)
+                }
+                group.leave()
+            }
+            
+            group.notify(queue: .main) {
+                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
+                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
+                
+                self.present(activityViewController, animated: true, completion: nil)
+            }
+            
+            UIView.animate(withDuration: 0.33) {
+                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }
+        }))
         
         shareActionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
             let song = Music.getNowPlayingInfo()

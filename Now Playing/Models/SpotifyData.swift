@@ -19,7 +19,27 @@ struct SpotifyAuthentication : Codable {
     }
 }
 
-struct SpotifySearch : Codable {
+struct SpotifySearchAlbums : Codable {
+    let albums: Album
+    
+    struct Album : Codable {
+        let items: [Item]
+        
+        struct Item : Codable {
+            let externalUrls: ExternalUrls
+            
+            enum CodingKeys: String, CodingKey {
+                case externalUrls = "external_urls"
+            }
+            
+            struct ExternalUrls: Codable {
+                let spotify: String
+            }
+        }
+    }
+}
+
+struct SpotifySearchTracks : Codable {
     let tracks: Tracks
 
     // MARK: - Tracks
