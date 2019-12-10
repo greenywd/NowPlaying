@@ -18,11 +18,11 @@ extension Data {
     }
 }
 
+enum SearchType {
+    case song, album
+}
+
 class Networking {
-    enum SearchType {
-        case song, album
-    }
-    
     static func search(using song: Song, for type: SearchType, completion: @escaping (String?) -> ()) {
         let baseURL = "https://api.music.apple.com/v1/catalog/AU/"
         var searchURL = ""
@@ -44,7 +44,7 @@ class Networking {
         var request = URLRequest(url: completeURL)
         request.httpMethod = "GET"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(key)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(appleMusicAPIKey)", forHTTPHeaderField: "Authorization")
         
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
