@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D60ACCCB231E3A3700C02D94 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66722231E33C000F8C8C5 /* Networking.swift */; };
-		D60ACCCC231E3A4700C02D94 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66724231E34B900F8C8C5 /* APIKey.swift */; };
 		D60ACCCD231E3A6700C02D94 /* AppleMusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */; };
 		D62F639020C7E70800A44662 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62F638F20C7E70800A44662 /* Extensions.swift */; };
 		D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */; };
@@ -21,9 +20,10 @@
 		D65335DC224ADBE700D97592 /* NowPlaying.swift in Sources */ = {isa = PBXBuildFile; fileRef = D642677A2213F01B00259034 /* NowPlaying.swift */; };
 		D65335DE224B031100D97592 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65335DD224B031100D97592 /* Song.swift */; };
 		D65335DF224B031400D97592 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65335DD224B031100D97592 /* Song.swift */; };
+		D6A3D10523A060D9003B9741 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10423A060D9003B9741 /* APIKey.swift */; };
+		D6A3D10623A060F4003B9741 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10423A060D9003B9741 /* APIKey.swift */; };
 		D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */; };
 		D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66722231E33C000F8C8C5 /* Networking.swift */; };
-		D6B66725231E34B900F8C8C5 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66724231E34B900F8C8C5 /* APIKey.swift */; };
 		D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */; };
 		D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389D20C629D7009BB662 /* AppDelegate.swift */; };
 		D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */; };
@@ -68,9 +68,9 @@
 		D642677A2213F01B00259034 /* NowPlaying.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlaying.swift; sourceTree = "<group>"; };
 		D65335DD224B031100D97592 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D698450B20D5E4AA0065D9D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D6A3D10423A060D9003B9741 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingTabBarController.swift; sourceTree = "<group>"; };
 		D6B66722231E33C000F8C8C5 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
-		D6B66724231E34B900F8C8C5 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
 		D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicData.swift; sourceTree = "<group>"; };
 		D6F8DAAA222A150400EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D6F8DAAF222A165E00EA1F08 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				D642677A2213F01B00259034 /* NowPlaying.swift */,
 				D65335DD224B031100D97592 /* Song.swift */,
 				D6B66722231E33C000F8C8C5 /* Networking.swift */,
-				D6B66724231E34B900F8C8C5 /* APIKey.swift */,
+				D6A3D10423A060D9003B9741 /* APIKey.swift */,
 				D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */,
 			);
 			path = Models;
@@ -303,8 +303,8 @@
 				D65335DF224B031400D97592 /* Song.swift in Sources */,
 				D6323E7720CBF871007728F9 /* MessagesViewController.swift in Sources */,
 				D65335DC224ADBE700D97592 /* NowPlaying.swift in Sources */,
+				D6A3D10623A060F4003B9741 /* APIKey.swift in Sources */,
 				D60ACCCB231E3A3700C02D94 /* Networking.swift in Sources */,
-				D60ACCCC231E3A4700C02D94 /* APIKey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -318,9 +318,9 @@
 				D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */,
 				D65335DE224B031100D97592 /* Song.swift in Sources */,
 				D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */,
+				D6A3D10523A060D9003B9741 /* APIKey.swift in Sources */,
 				D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
-				D6B66725231E34B900F8C8C5 /* APIKey.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

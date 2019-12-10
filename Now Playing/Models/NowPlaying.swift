@@ -15,6 +15,6 @@ struct Music {
     static func getNowPlayingInfo() -> Song {
         let nowPlaying = MPMusicPlayerController.systemMusicPlayer.nowPlayingItem
         
-        return Song(from: nowPlaying!)
+        return Song(from: nowPlaying)
     }
 }
