@@ -1,5 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Bucket
+   uuid = "D9299996-F1A1-434A-8AA2-FCBFC1D9EA72"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0671987B-07B8-491E-8686-1E1DE4DFE0C6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Now Playing/Models/Song.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "init()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "0671987B-07B8-491E-8686-1E1DE4DFE0C6 - 5922ab81c43ce8ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Now_Playing.Song.init() -&gt; Now_Playing.Song"
+                  moduleName = "Now Playing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/greeny/Developer/NowPlaying/Now%20Playing/Models/Song.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1352">
+               </Location>
+               <Location
+                  uuid = "0671987B-07B8-491E-8686-1E1DE4DFE0C6 - 5922ab81c43ce8ab"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Now_Playing.Song.init() -&gt; Now_Playing.Song"
+                  moduleName = "Now Playing"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/greeny/Developer/NowPlaying/Now%20Playing/Models/Song.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "1980">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9E901EE-BB49-46D6-90AE-C9DDCE8213EB"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Now Playing/Models/Song.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "init(from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB141AD3-C900-49FC-A9B3-437564419C7D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Now Playing/Controllers/NowPlayingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "contextMenuInteraction(_:configurationForMenuAtLocation:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "389DB53B-00F6-4510-AEE0-31B8706D9D47"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Now Playing/Controllers/NowPlayingPreviewControllerViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "init(song:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

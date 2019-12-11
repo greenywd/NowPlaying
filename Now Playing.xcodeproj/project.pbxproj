@@ -22,6 +22,8 @@
 		D65335DF224B031400D97592 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65335DD224B031100D97592 /* Song.swift */; };
 		D6A3D10523A060D9003B9741 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10423A060D9003B9741 /* APIKey.swift */; };
 		D6A3D10623A060F4003B9741 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10423A060D9003B9741 /* APIKey.swift */; };
+		D6A3D10923A06AE2003B9741 /* NowPlayingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10823A06AE2003B9741 /* NowPlayingImageView.swift */; };
+		D6A3D10B23A074C1003B9741 /* NowPlayingPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6A3D10A23A074C1003B9741 /* NowPlayingPreviewViewController.swift */; };
 		D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */; };
 		D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66722231E33C000F8C8C5 /* Networking.swift */; };
 		D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */; };
@@ -72,6 +74,8 @@
 		D65335DD224B031100D97592 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D698450B20D5E4AA0065D9D1 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		D6A3D10423A060D9003B9741 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		D6A3D10823A06AE2003B9741 /* NowPlayingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingImageView.swift; sourceTree = "<group>"; };
+		D6A3D10A23A074C1003B9741 /* NowPlayingPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingPreviewViewController.swift; sourceTree = "<group>"; };
 		D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingTabBarController.swift; sourceTree = "<group>"; };
 		D6B66722231E33C000F8C8C5 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
 		D6B66726231E35B700F8C8C5 /* AppleMusicData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppleMusicData.swift; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				D6FE389F20C629D7009BB662 /* NowPlayingViewController.swift */,
 				D6323E6920CBD8EA007728F9 /* SettingsViewController.swift */,
 				D6AB5D2F223355E000D50764 /* NowPlayingTabBarController.swift */,
+				D6A3D10A23A074C1003B9741 /* NowPlayingPreviewViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				D6F8DAA5222A13E400EA1F08 /* Controllers */,
 				D6FE38A120C629D7009BB662 /* Main.storyboard */,
 				D6FA5D7123376BEE00454769 /* String+Extensions.swift */,
+				D6A3D10823A06AE2003B9741 /* NowPlayingImageView.swift */,
 			);
 			path = "Now Playing";
 			sourceTree = "<group>";
@@ -231,6 +237,7 @@
 				D6FE389720C629D7009BB662 /* Frameworks */,
 				D6FE389820C629D7009BB662 /* Resources */,
 				D6323E8420CBF874007728F9 /* Embed App Extensions */,
+				D6A3D10723A06A85003B9741 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -303,6 +310,26 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		D6A3D10723A06A85003B9741 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\nERRORTAG=\"ERROR:\"\nfind \"${SRCROOT}\" \\( -name \"*.h\" -or -name \"*.m\" -or -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$|($ERRORTAG).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\" | perl -p -e \"s/($ERRORTAG)/ error: \\$1/\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		D6323E6D20CBF871007728F9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -323,6 +350,7 @@
 			files = (
 				D6FE38A020C629D7009BB662 /* NowPlayingViewController.swift in Sources */,
 				D642677B2213F01B00259034 /* NowPlaying.swift in Sources */,
+				D6A3D10923A06AE2003B9741 /* NowPlayingImageView.swift in Sources */,
 				D62F639020C7E70800A44662 /* Extensions.swift in Sources */,
 				D6B66723231E33C000F8C8C5 /* Networking.swift in Sources */,
 				D6FA5D7223376BEE00454769 /* String+Extensions.swift in Sources */,
@@ -330,9 +358,9 @@
 				D65335DE224B031100D97592 /* Song.swift in Sources */,
 				D6AB5D30223355E000D50764 /* NowPlayingTabBarController.swift in Sources */,
 				D6A3D10523A060D9003B9741 /* APIKey.swift in Sources */,
+				D6A3D10B23A074C1003B9741 /* NowPlayingPreviewViewController.swift in Sources */,
 				D6B66727231E35B700F8C8C5 /* AppleMusicData.swift in Sources */,
 				D6FE389E20C629D7009BB662 /* AppDelegate.swift in Sources */,
-				D6B66725231E34B900F8C8C5 /* APIKey.swift in Sources */,
 				D6FA5D702337695000454769 /* Spotify.swift in Sources */,
 				D6323E6A20CBD8EA007728F9 /* SettingsViewController.swift in Sources */,
 			);

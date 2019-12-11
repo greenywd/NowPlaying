@@ -44,9 +44,9 @@ class Networking {
         var request = URLRequest(url: completeURL)
         request.httpMethod = "GET"
         request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer \(appleMusicAPIKey)", forHTTPHeaderField: "Authorization")
+        request.setValue("Bearer \(key)", forHTTPHeaderField: "Authorization")
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             // make sure we got data
             guard let responseData = data else {
@@ -67,7 +67,6 @@ class Networking {
             } catch {
                 print(error, error.localizedDescription)
             }
-        }
-        task.resume()
+        }.resume()
     }
 }
