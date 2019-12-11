@@ -29,7 +29,12 @@ class NowPlayingViewController: UIViewController {
     // MARK: - Class Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        artworkView.isUserInteractionEnabled = true
+        
+        let interaction = UIContextMenuInteraction(delegate: self)
+        artworkView.addInteraction(interaction)
+        
         artworkView.layer.shadowColor = UIColor.black.cgColor
         artworkView.layer.shadowOpacity = 1
         artworkView.layer.shadowOffset = CGSize.zero
@@ -81,7 +86,6 @@ class NowPlayingViewController: UIViewController {
         // NotificationCenter.default.addObserver(self, selector: #selector(share(_:)), name: .NowPlayingShareSong, object: nil)
         NotificationCenter.default.addObserver(forName: .NowPlayingShareSong, object: nil, queue: .main , using: {(note) in
             print("Received notification from \(note)")
-            self.share()
         })
         completion()
     }
@@ -101,19 +105,18 @@ class NowPlayingViewController: UIViewController {
             }
         } else if (notification.name.rawValue == "NowPlayingInitialSetup") {
             artworkView.isHidden = false
-            artworkView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(share)))
             titleLabel.isHidden = false
         } else if (notification.name.rawValue == "MPMusicPlayerControllerNowPlayingItemDidChangeNotification") {
             let np = Music.getNowPlayingInfo()
             let playbackState = MPMusicPlayerController.systemMusicPlayer.playbackState
             
-            artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : np?.artist
-            titleLabel.text = (playbackState == .stopped) ? "" : np?.title
+            artistLabel.text = (playbackState == .stopped) ? "Start playing some music!" : np.artist
+            titleLabel.text = (playbackState == .stopped) ? "" : np.title
             
             if (playbackState == .stopped) {
                 artworkView.image = nil
             } else {
-                if let artwork = np?.artwork {
+                if let artwork = np.artwork {
                     artworkView.image = artwork
                     backgroundArtworkImage = artwork
                     // TODO: center this?
@@ -132,135 +135,85 @@ class NowPlayingViewController: UIViewController {
             }
         }
     }
-    
-    // TODO: Add "Share Album" option somewhere - ideally have both Song and Album options present to the user.
-    // Let's share something!
-    
-    @objc func share() {
-        // Move the user to the NowPlaying View - necessary for when activating via 3D Touch action.
-        self.tabBarController?.selectedIndex = 0
+}
+
+extension NowPlayingViewController : UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction, configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        var shareContent = [Any]()
         
-        UIView.animate(withDuration: 0.33) {
-            self.artworkView.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        let group = DispatchGroup()
+        group.enter()
+        
+        let configuration = UIContextMenuConfiguration(identifier: nil, previewProvider: {
+            return NowPlayingPreviewViewController(song: Music.getNowPlayingInfo())
+        }) { action in
+            let appleMusicSongAction = UIAction(title: "Apple Music Song", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                
+                Networking.search(using: Music.getNowPlayingInfo(), for: .song) { (url) in
+                    if let url = url {
+                        shareContent.append(url)
+                    }
+                    group.leave()
+                }
+            }
+            
+            let appleMusicAlbumAction = UIAction(title: "Apple Music Album", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                
+                Networking.search(using: Music.getNowPlayingInfo(), for: .album) { (url) in
+                    if let url = url {
+                        shareContent.append(url)
+                    }
+                    group.leave()
+                }
+            }
+            
+            let spotifySongAction = UIAction(title: "Spotify Song", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                
+                self.spotify.search(using: Music.getNowPlayingInfo(), for: .song) { (url) in
+                    if let url = url {
+                        shareContent.append(url)
+                    }
+                    group.leave()
+                }
+            }
+            
+            let spotifyAlbumAction = UIAction(title: "Spotify Album", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                
+                self.spotify.search(using: Music.getNowPlayingInfo(), for: .album) { (url) in
+                    if let url = url {
+                        shareContent.append(url)
+                    }
+                    group.leave()
+                }
+            }
+            
+            let textAction = UIAction(title: "Text + Artwork", image: UIImage(systemName: "square.and.arrow.up")) { _ in
+                let song = Music.getNowPlayingInfo()
+                shareContent.append("\(song.title) by \(song.artist)")
+                
+                if UserDefaults.standard.bool(forKey: "artwork_enabled") {
+                    if let artwork = song.artwork {
+                        shareContent.append(artwork)
+                    }
+                }
+                group.leave()
+            }
+            
+
+            let appleMusicMenu = UIMenu(title: "Apple Music", image: UIImage(systemName: "music.note"), children: [appleMusicSongAction, appleMusicAlbumAction])
+            let spotifyMenu = UIMenu(title: "Spotify", image: UIImage(systemName: "music.note"), children: [spotifySongAction, spotifyAlbumAction])
+            
+            return UIMenu(title: "Share Music", image: UIImage(systemName: "music.note"), identifier: nil, children: [appleMusicMenu, spotifyMenu, textAction])
         }
         
-        var shareContent = [Any]()
-
-        let shareActionSheet = UIAlertController(title: "How would you like to share?", message: nil, preferredStyle: .actionSheet)
-        shareActionSheet.addAction(UIAlertAction(title: "Apple Music URL - Song", style: .default, handler: { _ in
-            let group = DispatchGroup()
-            
-            group.enter()
-            Networking.search(using: Music.getNowPlayingInfo()!, for: .song) { (url) in
-                if let url = url {
-                    shareContent.append(url)
-                }
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            }
-            
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        shareActionSheet.addAction(UIAlertAction(title: "Apple Music URL - Album", style: .default, handler: { _ in
-            let group = DispatchGroup()
-            
-            group.enter()
-            Networking.search(using: Music.getNowPlayingInfo()!, for: .album) { (url) in
-                if let url = url {
-                    shareContent.append(url)
-                }
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            }
-            
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        shareActionSheet.addAction(UIAlertAction(title: "Spotify URL - Song", style: .default, handler: { _ in
-            let group = DispatchGroup()
-            
-            group.enter()
-            self.spotify.search(using: Music.getNowPlayingInfo()!, for: .song) { (url) in
-                if let url = url {
-                    shareContent.append(url)
-                }
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            }
-            
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        shareActionSheet.addAction(UIAlertAction(title: "Spotify URL - Album", style: .default, handler: { _ in
-            let group = DispatchGroup()
-            
-            group.enter()
-            self.spotify.search(using: Music.getNowPlayingInfo()!, for: .album) { (url) in
-                if let url = url {
-                    shareContent.append(url)
-                }
-                group.leave()
-            }
-            
-            group.notify(queue: .main) {
-                let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
-                activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
-                
-                self.present(activityViewController, animated: true, completion: nil)
-            }
-            
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        
-        shareActionSheet.addAction(UIAlertAction(title: "Text and Artwork", style: .default, handler: { _ in
-            let song = Music.getNowPlayingInfo()
-            shareContent.append("\(song?.title) by \(song?.artist)")
-            
-            if UserDefaults.standard.bool(forKey: "artwork_enabled") {
-                if let artwork = song?.artwork {
-                    shareContent.append(artwork)
-                }
-            }
-            
+        group.notify(queue: .main) {
             let activityViewController = UIActivityViewController(activityItems: shareContent, applicationActivities: nil)
             activityViewController.excludedActivityTypes = [UIActivity.ActivityType.airDrop, UIActivity.ActivityType.saveToCameraRoll]
             
             self.present(activityViewController, animated: true, completion: nil)
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        shareActionSheet.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: { _ in
-            self.dismiss(animated: true, completion: nil)
-            UIView.animate(withDuration: 0.33) {
-                self.artworkView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-            }
-        }))
-        self.present(shareActionSheet, animated: true, completion: nil)
+        }
+        
+        return configuration
     }
 }
 
